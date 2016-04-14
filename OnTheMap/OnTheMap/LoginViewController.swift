@@ -24,10 +24,31 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func loginPressed(sender: AnyObject) {
+        if let uname = userName.text, pw = password.text {
+            // try to get the session id from udacity
+            UdacityClient.sharedInstance().getSessionID(uname, password: pw) { (success, sessionID, errorString) in
+                performUIUpdatesOnMain {
+                    if (!success) {
+                        print(errorString)
+                        self.displayErrorDialog("Invalid Email or Password")
+                    } else {
+                        // transition to the map view
+                    }
+                }
+            }
+        } else {
+            // open a dialog saying "Empty Email or Password"
+            displayErrorDialog("Empty Email or Password")
+        }
     }
 
     @IBAction func facebookButtonPressed(sender: AnyObject) {
     }
     
+    private func displayErrorDialog(message: String) {
+        var emptyAlert = UIAlertController(title: nil, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        emptyAlert.addAction(UIAlertAction(title: "Dismiss", style: .Default, handler: nil))
+        presentViewController(emptyAlert, animated: true, completion: nil)
+    }
 }
 

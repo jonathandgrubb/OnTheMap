@@ -17,6 +17,7 @@
 		AB7E23E71CBC90400067637B /* OnTheMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7E23E61CBC90400067637B /* OnTheMapUITests.swift */; };
 		AB7E23F91CBC969B0067637B /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7E23F81CBC969B0067637B /* UdacityClient.swift */; };
 		ABDF63531CBF14640006F572 /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF63521CBF14640006F572 /* UdacityConvenience.swift */; };
+		ABDF63551CBF38AF0006F572 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF63541CBF38AF0006F572 /* GCDBlackBox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		AB7E23E81CBC90400067637B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB7E23F81CBC969B0067637B /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		ABDF63521CBF14640006F572 /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
+		ABDF63541CBF38AF0006F572 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 		AB7E23C21CBC90400067637B /* OnTheMap */ = {
 			isa = PBXGroup;
 			children = (
+				ABDF63541CBF38AF0006F572 /* GCDBlackBox.swift */,
 				AB7E23F41CBC93F40067637B /* Model */,
 				AB7E23C31CBC90400067637B /* AppDelegate.swift */,
 				AB7E23C51CBC90400067637B /* LoginViewController.swift */,
@@ -304,6 +307,7 @@
 				AB7E23CC1CBC90400067637B /* OnTheMap.xcdatamodeld in Sources */,
 				AB7E23C61CBC90400067637B /* LoginViewController.swift in Sources */,
 				ABDF63531CBF14640006F572 /* UdacityConvenience.swift in Sources */,
+				ABDF63551CBF38AF0006F572 /* GCDBlackBox.swift in Sources */,
 				AB7E23C41CBC90400067637B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
