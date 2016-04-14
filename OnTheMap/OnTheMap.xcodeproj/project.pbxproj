@@ -16,6 +16,7 @@
 		AB7E23DC1CBC90400067637B /* OnTheMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7E23DB1CBC90400067637B /* OnTheMapTests.swift */; };
 		AB7E23E71CBC90400067637B /* OnTheMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7E23E61CBC90400067637B /* OnTheMapUITests.swift */; };
 		AB7E23F91CBC969B0067637B /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7E23F81CBC969B0067637B /* UdacityClient.swift */; };
+		ABDF63531CBF14640006F572 /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF63521CBF14640006F572 /* UdacityConvenience.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		AB7E23E61CBC90400067637B /* OnTheMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapUITests.swift; sourceTree = "<group>"; };
 		AB7E23E81CBC90400067637B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB7E23F81CBC969B0067637B /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
+		ABDF63521CBF14640006F572 /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				AB7E23F81CBC969B0067637B /* UdacityClient.swift */,
+				ABDF63521CBF14640006F572 /* UdacityConvenience.swift */,
 			);
 			name = Udacity;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				AB7E23F91CBC969B0067637B /* UdacityClient.swift in Sources */,
 				AB7E23CC1CBC90400067637B /* OnTheMap.xcdatamodeld in Sources */,
 				AB7E23C61CBC90400067637B /* ViewController.swift in Sources */,
+				ABDF63531CBF14640006F572 /* UdacityConvenience.swift in Sources */,
 				AB7E23C41CBC90400067637B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -525,6 +529,7 @@
 				AB7E23ED1CBC90400067637B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AB7E23EE1CBC90400067637B /* Build configuration list for PBXNativeTarget "OnTheMapTests" */ = {
 			isa = XCConfigurationList;
@@ -533,6 +538,7 @@
 				AB7E23F01CBC90400067637B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AB7E23F11CBC90400067637B /* Build configuration list for PBXNativeTarget "OnTheMapUITests" */ = {
 			isa = XCConfigurationList;
@@ -541,6 +547,7 @@
 				AB7E23F31CBC90400067637B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
