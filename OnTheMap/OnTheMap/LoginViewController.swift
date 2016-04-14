@@ -46,7 +46,7 @@ class LoginViewController: UIViewController {
     }
     
     private func displayErrorDialog(message: String) {
-        var emptyAlert = UIAlertController(title: nil, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let emptyAlert = UIAlertController(title: nil, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         emptyAlert.addAction(UIAlertAction(title: "Dismiss", style: .Default, handler: nil))
         presentViewController(emptyAlert, animated: true, completion: nil)
     }
