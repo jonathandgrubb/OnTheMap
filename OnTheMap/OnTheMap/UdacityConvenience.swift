@@ -8,19 +8,33 @@
 
 import Foundation
 
-func getSessionID(username: String, password: String) -> Void {
-    let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/session")!)
-    request.HTTPMethod = "POST"
-    request.addValue("application/json", forHTTPHeaderField: "Accept")
-    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-    request.HTTPBody = "{\"udacity\": {\"username\": \"\(username)\", \"password\": \"\(password)\"}}".dataUsingEncoding(NSUTF8StringEncoding)
-    let session = NSURLSession.sharedSession()
-    let task = session.dataTaskWithRequest(request) { data, response, error in
-        if error != nil { // Handle error…
-            return
+extension UdacityClient {
+
+    func getSessionID(username: String, password: String, completionHandlerForSession: (success: Bool, sessionID: String?, errorString: String?) -> Void) {
+        
+        // specify params (if any)
+        let parameters = [String:AnyObject]()
+        
+        // build the json body with the username and password
+        let body = "{\"udacity\": {\"username\": \"\(username)\", \"password\": \"\(password)\"}}"
+        
+        taskForPOSTMethod("session", parameters: parameters, jsonBody: body) { (result, error) in
+            // 3. Send the desired value(s) to completion handler */
+            if let error = error {
+                print(error)
+                completionHandlerForSession(success: false, sessionID: nil, errorString: "Login Failed (Session ID).")
+            } else {
+                // get the session id
+                if let session = result["session"] as? [String:AnyObject],
+                       sessionId = session["id"] as? String {
+                    completionHandlerForSession(success: true, sessionID: sessionId, errorString: nil)
+                } else {
+                    print("Could not find sessionId in \(result)")
+                    completionHandlerForSession(success: false, sessionID: nil, errorString: "Login Failed (Session ID).")
+                }
+            }
         }
-        let newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5)) /* subset response data! */
-        print(NSString(data: newData, encoding: NSUTF8StringEncoding))
+
     }
-    task.resume()
+
 }
