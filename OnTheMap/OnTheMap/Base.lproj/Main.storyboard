@@ -76,7 +76,7 @@
         <!--Item 2-->
         <scene sceneID="sQV-35-uoZ">
             <objects>
-                <viewController id="9TQ-5j-YVn" sceneMemberID="viewController">
+                <viewController id="9TQ-5j-YVn" customClass="StudentListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4e4-13-pRD"/>
                         <viewControllerLayoutGuide type="bottom" id="tGv-0x-Wyn"/>
@@ -95,7 +95,7 @@
         <!--Item 1-->
         <scene sceneID="FtQ-KM-2Yi">
             <objects>
-                <viewController id="wiv-qF-yeU" sceneMemberID="viewController">
+                <viewController id="wiv-qF-yeU" customClass="MapViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="u23-pQ-r9j"/>
                         <viewControllerLayoutGuide type="bottom" id="2FW-kE-LRm"/>
@@ -111,10 +111,10 @@
             </objects>
             <point key="canvasLocation" x="2824" y="33"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Map Navigation-->
         <scene sceneID="4UA-uD-lPS">
             <objects>
-                <navigationController id="qfV-4c-iqJ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MapNavigationController" id="qfV-4c-iqJ" userLabel="Map Navigation" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ggz-c7-SPd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

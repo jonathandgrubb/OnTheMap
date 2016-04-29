@@ -32,7 +32,8 @@ class LoginViewController: UIViewController {
                         print(errorString)
                         self.displayErrorDialog("Invalid Email or Password")
                     } else {
-                        // transition to the map view
+                        // transition to the MapNavigationController
+                        self.completeLogin()
                     }
                 }
             }
@@ -45,6 +46,11 @@ class LoginViewController: UIViewController {
     @IBAction func facebookButtonPressed(sender: AnyObject) {
     }
     
+    private func completeLogin() {
+        let controller = storyboard!.instantiateViewControllerWithIdentifier("MapNavigationController") as! UINavigationController
+        presentViewController(controller, animated: true, completion: nil)
+    }
+
     private func displayErrorDialog(message: String) {
         let emptyAlert = UIAlertController(title: nil, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         emptyAlert.addAction(UIAlertAction(title: "Dismiss", style: .Default, handler: nil))

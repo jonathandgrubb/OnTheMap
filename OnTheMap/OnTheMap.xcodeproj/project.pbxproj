@@ -16,6 +16,8 @@
 		AB7E23DC1CBC90400067637B /* OnTheMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7E23DB1CBC90400067637B /* OnTheMapTests.swift */; };
 		AB7E23E71CBC90400067637B /* OnTheMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7E23E61CBC90400067637B /* OnTheMapUITests.swift */; };
 		AB7E23F91CBC969B0067637B /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7E23F81CBC969B0067637B /* UdacityClient.swift */; };
+		ABA870011CD2EAC8002690BE /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA870001CD2EAC8002690BE /* MapViewController.swift */; };
+		ABA870031CD2EAEB002690BE /* StudentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA870021CD2EAEB002690BE /* StudentListViewController.swift */; };
 		ABDF63531CBF14640006F572 /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF63521CBF14640006F572 /* UdacityConvenience.swift */; };
 		ABDF63551CBF38AF0006F572 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF63541CBF38AF0006F572 /* GCDBlackBox.swift */; };
 /* End PBXBuildFile section */
@@ -53,6 +55,8 @@
 		AB7E23E61CBC90400067637B /* OnTheMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapUITests.swift; sourceTree = "<group>"; };
 		AB7E23E81CBC90400067637B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB7E23F81CBC969B0067637B /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
+		ABA870001CD2EAC8002690BE /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		ABA870021CD2EAEB002690BE /* StudentListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentListViewController.swift; sourceTree = "<group>"; };
 		ABDF63521CBF14640006F572 /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
 		ABDF63541CBF38AF0006F572 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,9 +110,9 @@
 			isa = PBXGroup;
 			children = (
 				ABDF63541CBF38AF0006F572 /* GCDBlackBox.swift */,
-				AB7E23F41CBC93F40067637B /* Model */,
 				AB7E23C31CBC90400067637B /* AppDelegate.swift */,
-				AB7E23C51CBC90400067637B /* LoginViewController.swift */,
+				AB7E23F41CBC93F40067637B /* Model */,
+				ABA86FFF1CD2EA37002690BE /* Controller */,
 				AB7E23C71CBC90400067637B /* Main.storyboard */,
 				AB7E23CD1CBC90400067637B /* Assets.xcassets */,
 				AB7E23CF1CBC90400067637B /* LaunchScreen.storyboard */,
@@ -167,6 +171,16 @@
 			children = (
 			);
 			name = Parse;
+			sourceTree = "<group>";
+		};
+		ABA86FFF1CD2EA37002690BE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AB7E23C51CBC90400067637B /* LoginViewController.swift */,
+				ABA870001CD2EAC8002690BE /* MapViewController.swift */,
+				ABA870021CD2EAEB002690BE /* StudentListViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,8 +321,10 @@
 				AB7E23CC1CBC90400067637B /* OnTheMap.xcdatamodeld in Sources */,
 				AB7E23C61CBC90400067637B /* LoginViewController.swift in Sources */,
 				ABDF63531CBF14640006F572 /* UdacityConvenience.swift in Sources */,
+				ABA870031CD2EAEB002690BE /* StudentListViewController.swift in Sources */,
 				ABDF63551CBF38AF0006F572 /* GCDBlackBox.swift in Sources */,
 				AB7E23C41CBC90400067637B /* AppDelegate.swift in Sources */,
+				ABA870011CD2EAC8002690BE /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
