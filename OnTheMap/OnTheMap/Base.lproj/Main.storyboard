@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -73,10 +74,10 @@
             </objects>
             <point key="canvasLocation" x="299" y="387"/>
         </scene>
-        <!--Item 2-->
+        <!--Student List-->
         <scene sceneID="sQV-35-uoZ">
             <objects>
-                <viewController id="9TQ-5j-YVn" customClass="StudentListViewController" sceneMemberID="viewController">
+                <viewController id="9TQ-5j-YVn" userLabel="Student List" customClass="StudentListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4e4-13-pRD"/>
                         <viewControllerLayoutGuide type="bottom" id="tGv-0x-Wyn"/>
@@ -92,10 +93,10 @@
             </objects>
             <point key="canvasLocation" x="2824" y="701"/>
         </scene>
-        <!--Item 1-->
+        <!--Map View-->
         <scene sceneID="FtQ-KM-2Yi">
             <objects>
-                <viewController id="wiv-qF-yeU" customClass="MapViewController" sceneMemberID="viewController">
+                <viewController id="wiv-qF-yeU" userLabel="Map View" customClass="MapViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="u23-pQ-r9j"/>
                         <viewControllerLayoutGuide type="bottom" id="2FW-kE-LRm"/>
@@ -103,7 +104,18 @@
                     <view key="view" contentMode="scaleToFill" id="360-BW-X6V">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="fVc-jW-WmG">
+                                <rect key="frame" x="174" y="215" width="240" height="128"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fVc-jW-WmG" firstAttribute="leading" secondItem="360-BW-X6V" secondAttribute="leadingMargin" constant="154" id="IWP-ky-76i"/>
+                            <constraint firstItem="fVc-jW-WmG" firstAttribute="top" secondItem="u23-pQ-r9j" secondAttribute="bottom" constant="151" id="WlQ-yO-6R5"/>
+                            <constraint firstItem="2FW-kE-LRm" firstAttribute="top" secondItem="fVc-jW-WmG" secondAttribute="bottom" constant="208" id="lJJ-ht-QUZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fVc-jW-WmG" secondAttribute="trailing" constant="166" id="uTq-eU-vy7"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="ErD-DB-6kj"/>
                 </viewController>
@@ -127,11 +139,11 @@
             </objects>
             <point key="canvasLocation" x="1216" y="367"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--On The Map-->
         <scene sceneID="2mK-6j-P0G">
             <objects>
-                <tabBarController id="ZLL-w4-3HF" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="B03-Ri-OP3"/>
+                <tabBarController id="ZLL-w4-3HF" userLabel="On The Map" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="On The Map" id="B03-Ri-OP3"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="hjN-br-V4r">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
