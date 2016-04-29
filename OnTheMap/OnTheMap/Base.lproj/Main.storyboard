@@ -87,7 +87,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="5qa-4S-kp1"/>
+                    <tabBarItem key="tabBarItem" title="List" image="list" id="5qa-4S-kp1"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8p1-J6-g2N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -117,7 +117,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="fVc-jW-WmG" secondAttribute="trailing" constant="166" id="uTq-eU-vy7"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="ErD-DB-6kj"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="map" id="ErD-DB-6kj"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PoB-W5-J2V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -159,4 +159,8 @@
             <point key="canvasLocation" x="2022" y="367"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="list" width="32" height="32"/>
+        <image name="map" width="32" height="32"/>
+    </resources>
 </document>
