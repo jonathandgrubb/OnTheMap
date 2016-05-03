@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB7D32F91CD8294500C575D5 /* MapListTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7D32F81CD8294500C575D5 /* MapListTabBarController.swift */; };
 		AB7E23C41CBC90400067637B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7E23C31CBC90400067637B /* AppDelegate.swift */; };
 		AB7E23C61CBC90400067637B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7E23C51CBC90400067637B /* LoginViewController.swift */; };
 		AB7E23C91CBC90400067637B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7E23C71CBC90400067637B /* Main.storyboard */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB7D32F81CD8294500C575D5 /* MapListTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapListTabBarController.swift; sourceTree = "<group>"; };
 		AB7E23C01CBC90400067637B /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB7E23C31CBC90400067637B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB7E23C51CBC90400067637B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				AB7E23C51CBC90400067637B /* LoginViewController.swift */,
+				AB7D32F81CD8294500C575D5 /* MapListTabBarController.swift */,
 				ABA870001CD2EAC8002690BE /* MapViewController.swift */,
 				ABA870021CD2EAEB002690BE /* StudentListViewController.swift */,
 			);
@@ -320,6 +323,7 @@
 				AB7E23F91CBC969B0067637B /* UdacityClient.swift in Sources */,
 				AB7E23CC1CBC90400067637B /* OnTheMap.xcdatamodeld in Sources */,
 				AB7E23C61CBC90400067637B /* LoginViewController.swift in Sources */,
+				AB7D32F91CD8294500C575D5 /* MapListTabBarController.swift in Sources */,
 				ABDF63531CBF14640006F572 /* UdacityConvenience.swift in Sources */,
 				ABA870031CD2EAEB002690BE /* StudentListViewController.swift in Sources */,
 				ABDF63551CBF38AF0006F572 /* GCDBlackBox.swift in Sources */,
