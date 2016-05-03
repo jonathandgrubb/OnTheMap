@@ -11,11 +11,14 @@ import UIKit
 class MapListTabBarController: UITabBarController {
     
     @IBAction func refreshPressed(sender: AnyObject) {
+        // grab most recent student data
     }
     
     @IBAction func pinPressed(sender: AnyObject) {
+        // go to the information posting view
     }
     
     @IBAction func logoutPressed(sender: AnyObject) {
+        // go back to the login screen
     }
 }
