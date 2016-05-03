@@ -41,6 +41,28 @@ extension UdacityClient {
     
     func getUserNickname(userID: String, completionHandlerForNickname: (success: Bool, nickname: String?, errorString: String?) -> Void) {
         
+        // specify params (if any)
+        let parameters = [String:AnyObject]()
+        
+        // build the method
+        let method = "users/" + userID
+        
+        taskForGETMethod(method, parameters: parameters) { (result, error) in
+            // 3. Send the desired value(s) to completion handler */
+            if let error = error {
+                print(error)
+                completionHandlerForNickname(success: false, nickname: nil, errorString: "Nickname lookup failed")
+            } else {
+                // get the session id
+                if let user = result["user"] as? [String:AnyObject],
+                    nickname = user["nickname"] as? String {
+                    completionHandlerForNickname(success: true, nickname: nickname, errorString: nil)
+                } else {
+                    print("Could not find nickname in \(result)")
+                    completionHandlerForNickname(success: false, nickname: nil, errorString: "Nickname lookup failed")
+                }
+            }
+        }
     }
 
 }

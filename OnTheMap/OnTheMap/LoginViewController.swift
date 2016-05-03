@@ -27,15 +27,25 @@ class LoginViewController: UIViewController {
         if let uname = userName.text, pw = password.text {
             // try to get the session id from udacity
             UdacityClient.sharedInstance().getSessionInfo(uname, password: pw) { (success, sessionID, userID, errorString) in
-                performUIUpdatesOnMain {
                     if (!success) {
-                        print(errorString)
-                        self.displayErrorDialog("Invalid Email or Password")
+                        performUIUpdatesOnMain {
+                            print(errorString)
+                            self.displayErrorDialog("Invalid Email or Password")
+                        }
                     } else {
-                        // transition to the MapNavigationController
-                        self.completeLogin()
+                        // get the nickname for this user that logged in
+                        UdacityClient.sharedInstance().getUserNickname(userID!) { (success, nickname, errorString) in
+                            performUIUpdatesOnMain {
+                                if (!success) {
+                                    // transition to the MapNavigationController
+                                    self.completeLogin(nickname!)
+                                } else {
+                                    // open a dialog saying "Public User Info Not Found"
+                                    self.displayErrorDialog("Public User Info Not Found")
+                                }
+                            }
+                        }
                     }
-                }
             }
         } else {
             // open a dialog saying "Empty Email or Password"
@@ -46,7 +56,7 @@ class LoginViewController: UIViewController {
     @IBAction func facebookButtonPressed(sender: AnyObject) {
     }
     
-    private func completeLogin() {
+    private func completeLogin(nickname: String) {
         let controller = storyboard!.instantiateViewControllerWithIdentifier("MapNavigationController") as! UINavigationController
         presentViewController(controller, animated: true, completion: nil)
     }
