@@ -6,4 +6,16 @@
 //  Copyright © 2016 Jonathan Grubb. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class MapListTabBarController: UITabBarController {
+    
+    @IBAction func refreshPressed(sender: AnyObject) {
+    }
+    
+    @IBAction func pinPressed(sender: AnyObject) {
+    }
+    
+    @IBAction func logoutPressed(sender: AnyObject) {
+    }
+}
