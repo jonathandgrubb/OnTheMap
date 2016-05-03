@@ -38,5 +38,9 @@ extension UdacityClient {
         }
 
     }
+    
+    func getUserNickname(userID: String, completionHandlerForNickname: (success: Bool, nickname: String?, errorString: String?) -> Void) {
+        
+    }
 
 }
