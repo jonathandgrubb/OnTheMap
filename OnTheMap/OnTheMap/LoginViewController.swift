@@ -38,7 +38,7 @@ class LoginViewController: UIViewController {
                             performUIUpdatesOnMain {
                                 if (!success) {
                                     // transition to the MapNavigationController
-                                    self.completeLogin(nickname!)
+                                    self.completeLogin(userID!, nickname: nickname!)
                                 } else {
                                     // open a dialog saying "Public User Info Not Found"
                                     self.displayErrorDialog("Public User Info Not Found")
@@ -56,7 +56,7 @@ class LoginViewController: UIViewController {
     @IBAction func facebookButtonPressed(sender: AnyObject) {
     }
     
-    private func completeLogin(nickname: String) {
+    private func completeLogin(userId: String, nickname: String) {
         let controller = storyboard!.instantiateViewControllerWithIdentifier("MapNavigationController") as! UINavigationController
         presentViewController(controller, animated: true, completion: nil)
     }
