@@ -10,7 +10,7 @@ import Foundation
 
 extension UdacityClient {
 
-    func getSessionID(username: String, password: String, completionHandlerForSession: (success: Bool, sessionID: String?, errorString: String?) -> Void) {
+    func getSessionInfo(username: String, password: String, completionHandlerForSession: (success: Bool, sessionID: String?, userID: String?, errorString: String?) -> Void) {
         
         // specify params (if any)
         let parameters = [String:AnyObject]()
@@ -22,15 +22,17 @@ extension UdacityClient {
             // 3. Send the desired value(s) to completion handler */
             if let error = error {
                 print(error)
-                completionHandlerForSession(success: false, sessionID: nil, errorString: "Login Failed (Session ID).")
+                completionHandlerForSession(success: false, sessionID: nil, userID: nil, errorString: "Login Failed (Session ID).")
             } else {
                 // get the session id
                 if let session = result["session"] as? [String:AnyObject],
-                       sessionId = session["id"] as? String {
-                    completionHandlerForSession(success: true, sessionID: sessionId, errorString: nil)
+                       sessionId = session["id"] as? String,
+                       account = result["account"] as? [String:AnyObject],
+                       userId = account["key"] as? String {
+                    completionHandlerForSession(success: true, sessionID: sessionId, userID: userId, errorString: nil)
                 } else {
                     print("Could not find sessionId in \(result)")
-                    completionHandlerForSession(success: false, sessionID: nil, errorString: "Login Failed (Session ID).")
+                    completionHandlerForSession(success: false, sessionID: nil, userID: nil, errorString: "Login Failed (Session ID).")
                 }
             }
         }

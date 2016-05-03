@@ -26,7 +26,7 @@ class LoginViewController: UIViewController {
     @IBAction func loginPressed(sender: AnyObject) {
         if let uname = userName.text, pw = password.text {
             // try to get the session id from udacity
-            UdacityClient.sharedInstance().getSessionID(uname, password: pw) { (success, sessionID, errorString) in
+            UdacityClient.sharedInstance().getSessionInfo(uname, password: pw) { (success, sessionID, userID, errorString) in
                 performUIUpdatesOnMain {
                     if (!success) {
                         print(errorString)
