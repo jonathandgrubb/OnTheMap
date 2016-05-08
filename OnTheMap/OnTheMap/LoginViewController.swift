@@ -26,22 +26,25 @@ class LoginViewController: UIViewController {
     @IBAction func loginPressed(sender: AnyObject) {
         if let uname = userName.text, pw = password.text {
             // try to get the session id from udacity
-            UdacityClient.sharedInstance().getSessionInfo(uname, password: pw) { (success, sessionID, userID, errorString) in
+            UdacityClient.sharedInstance().getSessionInfo(uname, password: pw) { (success, sessionID, userID, error) in
                     if (!success) {
                         performUIUpdatesOnMain {
-                            print(errorString)
-                            self.displayErrorDialog("Invalid Email or Password")
+                            if (error == UdacityClient.Errors.LoginFailed) {
+                                self.displayErrorDialog("Invalid Email or Password")
+                            } else {
+                                self.displayErrorDialog("Failed Network Connection")
+                            }
                         }
                     } else {
                         // get the nickname for this user that logged in
-                        UdacityClient.sharedInstance().getUserNickname(userID!) { (success, nickname, errorString) in
+                        UdacityClient.sharedInstance().getUsersName(userID!) { (success, firstName, lastName, error) in
                             performUIUpdatesOnMain {
-                                if (!success) {
+                                if (success) {
                                     // transition to the MapNavigationController
-                                    self.completeLogin(userID!, nickname: nickname!)
+                                    self.completeLogin(userID!, firstName: firstName!, lastName: lastName!)
                                 } else {
-                                    // open a dialog saying "Public User Info Not Found"
-                                    self.displayErrorDialog("Public User Info Not Found")
+                                    // Public User Info Either Not Found - Udacity's API must be having an issue
+                                    self.displayErrorDialog("Failed Network Connection")
                                 }
                             }
                         }
@@ -56,7 +59,7 @@ class LoginViewController: UIViewController {
     @IBAction func facebookButtonPressed(sender: AnyObject) {
     }
     
-    private func completeLogin(userId: String, nickname: String) {
+    private func completeLogin(userId: String, firstName: String, lastName: String) {
         let controller = storyboard!.instantiateViewControllerWithIdentifier("MapNavigationController") as! UINavigationController
         presentViewController(controller, animated: true, completion: nil)
     }

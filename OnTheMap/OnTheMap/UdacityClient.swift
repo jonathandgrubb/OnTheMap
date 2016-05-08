@@ -83,10 +83,12 @@ class UdacityClient : NSObject {
         // 4. Make the request
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
             
-            func sendError(error: String) {
+            // sendError will be more informative from this function 
+            // (since only a status code 403 can express whether a login was successful to getSessionInfo()
+            func sendError(error: String, code: Int = 1) {
                 print(error)
                 let userInfo = [NSLocalizedDescriptionKey : error]
-                completionHandlerForPOST(result: nil, error: NSError(domain: "taskForPOSTMethod", code: 1, userInfo: userInfo))
+                completionHandlerForPOST(result: nil, error: NSError(domain: "taskForPOSTMethod", code: code, userInfo: userInfo))
             }
             
             // GUARD: Was there an error?
@@ -95,9 +97,9 @@ class UdacityClient : NSObject {
                 return
             }
             
-            // GUARD: Did we get a successful 2XX response?
-            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-                sendError("Your request returned a status code other than 2xx!")
+            // Status Code Check: Did we get a successful 2XX response?
+            if let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode < 200 || statusCode > 299 {
+                sendError("Your request returned a status code other than 2xx!", code: statusCode)
                 return
             }
             
@@ -157,6 +159,14 @@ class UdacityClient : NSObject {
         return components.URL!
     }
 
+    // substitute the key for the value that is contained within the method name
+    func subtituteKeyInMethod(method: String, key: String, value: String) -> String? {
+        if method.rangeOfString("{\(key)}") != nil {
+            return method.stringByReplacingOccurrencesOfString("{\(key)}", withString: value)
+        } else {
+            return nil
+        }
+    }
     
     // MARK: Shared Instance
     class func sharedInstance() -> UdacityClient {
