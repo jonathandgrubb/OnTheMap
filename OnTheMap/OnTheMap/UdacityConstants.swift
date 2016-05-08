@@ -8,11 +8,6 @@
 
 extension UdacityClient {
     
-    //struct Errors {
-    //    static let NetworkError = "Network Error"
-    //    static let LoginFailed = "Login Failed"
-    //}
-    
     enum Errors {
         case NetworkError
         case LoginFailed

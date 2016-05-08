@@ -50,7 +50,7 @@ extension UdacityClient {
         
         // build the method
         var mutableMethod: String = Methods.UsersID
-        mutableMethod = subtituteKeyInMethod(mutableMethod, key: URLKeys.UserID, value: userID)!
+        mutableMethod = Common.subtituteKeyInMethod(mutableMethod, key: URLKeys.UserID, value: userID)!
         
         taskForGETMethod(mutableMethod, parameters: parameters) { (result, error) in
             // 3. Send the desired value(s) to completion handler */

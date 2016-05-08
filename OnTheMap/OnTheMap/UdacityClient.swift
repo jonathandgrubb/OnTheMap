@@ -57,7 +57,7 @@ class UdacityClient : NSObject {
             let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
             
             // 5/6. Parse the data and use the data (happens in completion handler)
-            self.convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandlerForGET)
+            Common.convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandlerForGET)
         }
         
         // 7. Start the request
@@ -113,7 +113,7 @@ class UdacityClient : NSObject {
             let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
             
             // 5/6. Parse the data and use the data (happens in completion handler)
-            self.convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandlerForPOST)
+            Common.convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandlerForPOST)
         }
         
         // 7. Start the request
@@ -126,21 +126,6 @@ class UdacityClient : NSObject {
     // DELETE (this is only needed for the Facebook optional api)
     // func taskForDELETEMethod
     
-    
-    // given raw JSON, return a usable Foundation object
-    private func convertDataWithCompletionHandler(data: NSData, completionHandlerForConvertData: (result: AnyObject!, error: NSError?) -> Void) {
-        
-        var parsedResult: AnyObject!
-        do {
-            parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-        } catch {
-            let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
-            completionHandlerForConvertData(result: nil, error: NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))
-        }
-        
-        completionHandlerForConvertData(result: parsedResult, error: nil)
-    }
-
     
     // create a URL from parameters
     private func udacityURLFromParameters(parameters: [String:AnyObject], withPathExtension: String? = nil) -> NSURL {
@@ -159,15 +144,6 @@ class UdacityClient : NSObject {
         return components.URL!
     }
 
-    // substitute the key for the value that is contained within the method name
-    func subtituteKeyInMethod(method: String, key: String, value: String) -> String? {
-        if method.rangeOfString("{\(key)}") != nil {
-            return method.stringByReplacingOccurrencesOfString("{\(key)}", withString: value)
-        } else {
-            return nil
-        }
-    }
-    
     // MARK: Shared Instance
     class func sharedInstance() -> UdacityClient {
         struct Singleton {
