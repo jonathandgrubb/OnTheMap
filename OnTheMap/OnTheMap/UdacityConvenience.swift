@@ -18,7 +18,7 @@ extension UdacityClient {
         // build the json body with the username and password
         let body = "{\"udacity\": {\"username\": \"\(username)\", \"password\": \"\(password)\"}}"
         
-        taskForPOSTMethod("session", parameters: parameters, jsonBody: body) { (result, error) in
+        taskForPOSTMethod("/session", parameters: parameters, jsonBody: body) { (result, error) in
             // 3. Send the desired value(s) to completion handler */
             if let error = error {
                 print(error)
@@ -45,7 +45,7 @@ extension UdacityClient {
         let parameters = [String:AnyObject]()
         
         // build the method
-        let method = "users/" + userID
+        let method = "/users/" + userID
         
         taskForGETMethod(method, parameters: parameters) { (result, error) in
             // 3. Send the desired value(s) to completion handler */
@@ -53,6 +53,7 @@ extension UdacityClient {
                 print(error)
                 completionHandlerForNickname(success: false, nickname: nil, errorString: "Nickname lookup failed")
             } else {
+                print(result)
                 // get the session id
                 if let user = result["user"] as? [String:AnyObject],
                     nickname = user["nickname"] as? String {
