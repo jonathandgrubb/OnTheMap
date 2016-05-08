@@ -57,6 +57,7 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func facebookButtonPressed(sender: AnyObject) {
+        displayErrorDialog("Feature Not Available At This Time")
     }
     
     private func completeLogin(userId: String, firstName: String, lastName: String) {
