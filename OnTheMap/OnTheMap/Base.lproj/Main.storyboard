@@ -27,7 +27,7 @@
                                     <constraint firstAttribute="width" constant="289" id="eos-na-8sc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aMn-Z2-MmZ">
                                 <rect key="frame" x="172" y="250" width="289" height="30"/>
@@ -37,7 +37,7 @@
                                     <constraint firstAttribute="width" constant="289" id="Kad-kV-MRy"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2q-uw-sQt">
                                 <rect key="frame" x="172" y="289" width="289" height="30"/>
@@ -160,15 +160,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="fVc-jW-WmG">
-                                <rect key="frame" x="174" y="215" width="240" height="128"/>
+                                <rect key="frame" x="20" y="64" width="560" height="487"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fVc-jW-WmG" firstAttribute="leading" secondItem="360-BW-X6V" secondAttribute="leadingMargin" constant="154" id="IWP-ky-76i"/>
-                            <constraint firstItem="fVc-jW-WmG" firstAttribute="top" secondItem="u23-pQ-r9j" secondAttribute="bottom" constant="151" id="WlQ-yO-6R5"/>
-                            <constraint firstItem="2FW-kE-LRm" firstAttribute="top" secondItem="fVc-jW-WmG" secondAttribute="bottom" constant="208" id="lJJ-ht-QUZ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="fVc-jW-WmG" secondAttribute="trailing" constant="166" id="uTq-eU-vy7"/>
+                            <constraint firstItem="fVc-jW-WmG" firstAttribute="top" secondItem="u23-pQ-r9j" secondAttribute="bottom" id="WlQ-yO-6R5"/>
+                            <constraint firstItem="2FW-kE-LRm" firstAttribute="top" secondItem="fVc-jW-WmG" secondAttribute="bottom" id="lJJ-ht-QUZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fVc-jW-WmG" secondAttribute="trailing" id="uTq-eU-vy7"/>
+                            <constraint firstItem="fVc-jW-WmG" firstAttribute="leading" secondItem="360-BW-X6V" secondAttribute="leadingMargin" id="wBb-Vm-etD"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="map" id="ErD-DB-6kj"/>
