@@ -10,7 +10,7 @@ import Foundation
 
 extension ParseClient {
     
-    func getStudentLocations(numRecords: Int = 100, skip: Int = 0, ascending: Bool = true, completionHandlerForLocations: (success: Bool, studentLocations: [String:AnyObject]?, error: ParseClient.Errors?) -> Void) {
+    func getStudentLocations(numRecords: Int = 100, skip: Int = 0, ascending: Bool = true, completionHandlerForLocations: (success: Bool, studentLocations: [[String:AnyObject]]?, error: ParseClient.Errors?) -> Void) {
         
         // specify params (if any)
         var parameters : [String:AnyObject] = [
@@ -28,7 +28,7 @@ extension ParseClient {
             } else {
                 print(result)
                 // get the students' locations
-                if let results = result["results"] as? [String:AnyObject] {
+                if let results = result["results"] as? [[String:AnyObject]] {
                     completionHandlerForLocations(success: true, studentLocations: results, error: nil)
                 } else {
                     print("Could not find results in \(result)")
