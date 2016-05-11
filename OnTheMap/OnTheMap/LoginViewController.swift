@@ -61,6 +61,12 @@ class LoginViewController: UIViewController {
     }
     
     private func completeLogin(userId: String, firstName: String, lastName: String) {
+        // save the stuff we need for the Parse API calls
+        ParseClient.sharedInstance().userId = userId
+        ParseClient.sharedInstance().firstName = firstName
+        ParseClient.sharedInstance().lastName = lastName
+        
+        // present the tab bar controller
         let controller = storyboard!.instantiateViewControllerWithIdentifier("MapNavigationController") as! UINavigationController
         presentViewController(controller, animated: true, completion: nil)
     }

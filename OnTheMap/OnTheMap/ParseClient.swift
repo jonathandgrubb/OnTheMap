@@ -13,6 +13,11 @@ class ParseClient : NSObject {
     // shared session
     var session = NSURLSession.sharedSession()
 
+    // things we saved at login
+    var userId : String? = nil
+    var firstName : String? = nil
+    var lastName : String? = nil
+    
     // GET
     func taskForGETMethod(method: String, parameters: [String:AnyObject], completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
@@ -80,9 +85,9 @@ class ParseClient : NSObject {
     }
     
     // MARK: Shared Instance
-    class func sharedInstance() -> UdacityClient {
+    class func sharedInstance() -> ParseClient {
         struct Singleton {
-            static var sharedInstance = UdacityClient()
+            static var sharedInstance = ParseClient()
         }
         return Singleton.sharedInstance
     }
