@@ -19,18 +19,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hbl-0R-EnM">
-                                <rect key="frame" x="172" y="212" width="289" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="cOO-JZ-Ht4"/>
-                                    <constraint firstAttribute="width" constant="289" id="eos-na-8sc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
-                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aMn-Z2-MmZ">
-                                <rect key="frame" x="172" y="250" width="289" height="30"/>
+                                <rect key="frame" x="172" y="251" width="289" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="8WN-za-RNj"/>
@@ -84,6 +74,16 @@
                                     <constraint firstAttribute="height" constant="80" id="p3m-Bq-AwN"/>
                                 </constraints>
                             </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hbl-0R-EnM">
+                                <rect key="frame" x="172" y="212" width="289" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="cOO-JZ-Ht4"/>
+                                    <constraint firstAttribute="width" constant="289" id="eos-na-8sc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.99904972314834595" green="0.46870201826095581" blue="0.0057524912990629673" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -115,7 +115,7 @@
         <!--Student List-->
         <scene sceneID="sQV-35-uoZ">
             <objects>
-                <viewController id="9TQ-5j-YVn" userLabel="Student List" customClass="StudentListViewController" sceneMemberID="viewController">
+                <viewController id="9TQ-5j-YVn" userLabel="Student List" customClass="StudentListViewController" customModule="OnTheMap" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4e4-13-pRD"/>
                         <viewControllerLayoutGuide type="bottom" id="tGv-0x-Wyn"/>
@@ -150,7 +150,7 @@
         <!--Map View-->
         <scene sceneID="FtQ-KM-2Yi">
             <objects>
-                <viewController id="wiv-qF-yeU" userLabel="Map View" customClass="MapViewController" sceneMemberID="viewController">
+                <viewController id="wiv-qF-yeU" userLabel="Map View" customClass="MapViewController" customModule="OnTheMap" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="u23-pQ-r9j"/>
                         <viewControllerLayoutGuide type="bottom" id="2FW-kE-LRm"/>
@@ -161,6 +161,9 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="fVc-jW-WmG">
                                 <rect key="frame" x="20" y="64" width="560" height="487"/>
+                                <connections>
+                                    <outlet property="delegate" destination="wiv-qF-yeU" id="6Yl-4R-SgG"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -172,6 +175,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="map" id="ErD-DB-6kj"/>
+                    <connections>
+                        <outlet property="mapView" destination="fVc-jW-WmG" id="dhP-vP-859"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PoB-W5-J2V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
