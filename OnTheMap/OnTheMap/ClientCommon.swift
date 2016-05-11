@@ -1,5 +1,5 @@
 //
-//  Common.swift
+//  ClientCommon.swift
 //  Functions that are common to more than one API Client
 //
 //  Created by Jonathan Grubb on 5/8/16.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Common {
+public class ClientCommon {
 
     // substitute the key for the value that is contained within the method name
     public static func subtituteKeyInMethod(method: String, key: String, value: String) -> String? {

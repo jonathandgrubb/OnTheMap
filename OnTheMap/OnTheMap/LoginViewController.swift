@@ -30,9 +30,9 @@ class LoginViewController: UIViewController {
                     if (!success) {
                         performUIUpdatesOnMain {
                             if (error == UdacityClient.Errors.LoginFailed) {
-                                self.displayErrorDialog("Invalid Email or Password")
+                                ControllerCommon.displayErrorDialog(self, message: "Invalid Email or Password")
                             } else {
-                                self.displayErrorDialog("Failed Network Connection")
+                                ControllerCommon.displayErrorDialog(self, message: "Failed Network Connection")
                             }
                         }
                     } else {
@@ -44,7 +44,7 @@ class LoginViewController: UIViewController {
                                     self.completeLogin(userID!, firstName: firstName!, lastName: lastName!)
                                 } else {
                                     // Public User Info Either Not Found - Udacity's API must be having an issue
-                                    self.displayErrorDialog("Failed Network Connection")
+                                    ControllerCommon.displayErrorDialog(self, message: "Failed Network Connection")
                                 }
                             }
                         }
@@ -52,12 +52,12 @@ class LoginViewController: UIViewController {
             }
         } else {
             // open a dialog saying "Empty Email or Password"
-            displayErrorDialog("Empty Email or Password")
+            ControllerCommon.displayErrorDialog(self, message: "Empty Email or Password")
         }
     }
 
     @IBAction func facebookButtonPressed(sender: AnyObject) {
-        displayErrorDialog("Feature Not Available At This Time")
+        ControllerCommon.displayErrorDialog(self, message: "Feature Not Available At This Time")
     }
     
     private func completeLogin(userId: String, firstName: String, lastName: String) {
@@ -71,10 +71,5 @@ class LoginViewController: UIViewController {
         presentViewController(controller, animated: true, completion: nil)
     }
 
-    private func displayErrorDialog(message: String) {
-        let emptyAlert = UIAlertController(title: nil, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        emptyAlert.addAction(UIAlertAction(title: "Dismiss", style: .Default, handler: nil))
-        presentViewController(emptyAlert, animated: true, completion: nil)
-    }
 }
 

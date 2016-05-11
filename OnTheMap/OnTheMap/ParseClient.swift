@@ -58,7 +58,7 @@ class ParseClient : NSObject {
             }
             
             // 5/6. Parse the data and use the data (happens in completion handler)
-            Common.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForGET)
+            ClientCommon.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForGET)
         }
         
         // 7. Start the request

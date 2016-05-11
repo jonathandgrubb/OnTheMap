@@ -57,7 +57,7 @@ class UdacityClient : NSObject {
             let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
             
             // 5/6. Parse the data and use the data (happens in completion handler)
-            Common.convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandlerForGET)
+            ClientCommon.convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandlerForGET)
         }
         
         // 7. Start the request
@@ -113,7 +113,7 @@ class UdacityClient : NSObject {
             let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
             
             // 5/6. Parse the data and use the data (happens in completion handler)
-            Common.convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandlerForPOST)
+            ClientCommon.convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandlerForPOST)
         }
         
         // 7. Start the request
