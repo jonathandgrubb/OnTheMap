@@ -16,6 +16,7 @@ extension ParseClient {
     enum Errors {
         case NetworkError
         case RequiredContentMissing
+        case DataConversionError
     }
     
     struct Methods {
