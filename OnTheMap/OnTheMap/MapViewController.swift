@@ -25,11 +25,19 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     ControllerCommon.displayErrorDialog(self, message: "Could Not Retrieve Classmate Locations")
                     return
                 }
-
-                if let studentLocations = studentLocations {
-                    self.mapView.addAnnotations(studentLocations)
+            }
+            
+            // convert it to the format the map needs
+            ParseClient.sharedInstance().mkPointAnnotation(studentLocations) { (success, mapData) in
+                performUIUpdatesOnMain {
+                    if !success {
+                        ControllerCommon.displayErrorDialog(self, message: "Could Not Retrieve Classmate Locations")
+                    } else {
+                        self.mapView.addAnnotations(mapData!)
+                    }
                 }
             }
+
         }
     }
 
