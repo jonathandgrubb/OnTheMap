@@ -38,6 +38,7 @@ extension StudentListViewController: UITableViewDelegate, UITableViewDataSource 
            let url = student["mediaURL"] as? String {
             cell!.textLabel!.text = "\(firstName) \(lastName)"
             cell!.detailTextLabel!.text = url
+            cell!.imageView?.image = UIImage(named: "pin")
         } else {
             cell!.textLabel!.text = "Error loading cell"
         }
