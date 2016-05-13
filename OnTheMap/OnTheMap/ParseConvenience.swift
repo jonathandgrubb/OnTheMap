@@ -31,6 +31,7 @@ extension ParseClient {
                 // get the students' locations
                 if let results = result["results"] as? [[String:AnyObject]] {
                     // convert it to the format the map needs
+                    self.studentLocations = results
                     completionHandlerForLocations(success: true, studentLocations: results, error: nil)
                 } else {
                     print("Could not find results in \(result)")

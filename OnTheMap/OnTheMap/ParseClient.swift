@@ -18,6 +18,9 @@ class ParseClient : NSObject {
     var firstName : String? = nil
     var lastName : String? = nil
     
+    // things we save until refresh is needed
+    var studentLocations: [[String:AnyObject]]?
+    
     // GET
     func taskForGETMethod(method: String, parameters: [String:AnyObject], completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
