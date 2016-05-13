@@ -55,11 +55,14 @@ extension StudentListViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        /*
-        let movie = movies[indexPath.row]
-        let controller = storyboard!.instantiateViewControllerWithIdentifier("MovieDetailViewController") as! MovieDetailViewController
-        controller.movie = movie
-        navigationController!.pushViewController(controller, animated: true)
-        */
+
+        let app = UIApplication.sharedApplication()
+        
+        if let studentLocations = ParseClient.sharedInstance().studentLocations,
+           let student = studentLocations[indexPath.row] as? [String:AnyObject],
+           let url = student["mediaURL"] as? String {
+            app.openURL(NSURL(string: url)!)
+        }
+
     }
 }
