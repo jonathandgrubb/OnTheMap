@@ -42,4 +42,17 @@ extension ParseClient {
         static let AppId = "X-Parse-Application-Id"
         static let RestApiKey = "X-Parse-REST-API-Key"
     }
+    
+    struct JSONResponseKeys {
+        static let CreatedAt = "createdAt"
+        static let FirstName = "firstName"
+        static let LastName = "lastName"
+        static let Latitude = "latitude"
+        static let Longitude = "longitude"
+        static let MapString = "mapString"
+        static let MediaUrl = "mediaURL"
+        static let ObjectId = "objectId"
+        static let UniqueKey = "uniqueKey"
+        static let UpdatedAt = "updatedAt"
+    }
 }

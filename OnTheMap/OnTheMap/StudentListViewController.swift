@@ -13,6 +13,19 @@ class StudentListViewController: UIViewController {
     @IBOutlet weak var studentsTableView: UITableView!
     
     override func viewDidLoad() {
+        
+        // refresh student locations if for some reason they are not available
+        if ParseClient.sharedInstance().studentLocations == nil {
+            ParseClient.sharedInstance().getStudentLocations() { (success, studentLocations, error) in
+                performUIUpdatesOnMain {
+                    if (!success) {
+                        ControllerCommon.displayErrorDialog(self, message: "Could Not Retrieve Classmate Locations")
+                        return
+                    }
+                }
+            }
+        }
+        
         // configure tap recognizer
         //let tapRecognizer = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
         //tapRecognizer.numberOfTapsRequired = 1
@@ -28,17 +41,21 @@ extension StudentListViewController: UITableViewDelegate, UITableViewDataSource 
         let CellReuseId = "StudentSearchCell"
         var cell = tableView.dequeueReusableCellWithIdentifier(CellReuseId)
         if cell == nil {
+            // create a cell if there is not one to dequeue
             cell = UITableViewCell(style:UITableViewCellStyle.Subtitle, reuseIdentifier:CellReuseId)
         }
         
         if let studentLocations = ParseClient.sharedInstance().studentLocations,
-           let student = studentLocations[indexPath.row] as? [String:AnyObject],
-           let firstName = student["firstName"] as? String,
-           let lastName = student["lastName"] as? String,
-           let url = student["mediaURL"] as? String {
-            cell!.textLabel!.text = "\(firstName) \(lastName)"
-            cell!.detailTextLabel!.text = url
+           let studentLocation = studentLocations[indexPath.row] as StudentInformation? {
+            
+            // populate cell with student location information
+            cell!.textLabel!.text = "\(studentLocation.firstName) \(studentLocation.lastName)"
             cell!.imageView?.image = UIImage(named: "pin")
+            
+            // popluate interesting url posted by student (if present)
+            if let url = studentLocation.url {
+                cell!.detailTextLabel!.text = url
+            }
         } else {
             cell!.textLabel!.text = "Error loading cell"
         }
@@ -59,8 +76,8 @@ extension StudentListViewController: UITableViewDelegate, UITableViewDataSource 
         let app = UIApplication.sharedApplication()
         
         if let studentLocations = ParseClient.sharedInstance().studentLocations,
-           let student = studentLocations[indexPath.row] as? [String:AnyObject],
-           let url = student["mediaURL"] as? String {
+           let studentLocation = studentLocations[indexPath.row] as StudentInformation?,
+           let url = studentLocation.url {
             app.openURL(NSURL(string: url)!)
         }
 
