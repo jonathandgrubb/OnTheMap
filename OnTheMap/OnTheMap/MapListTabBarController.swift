@@ -12,13 +12,17 @@ class MapListTabBarController: UITabBarController {
     
     @IBAction func refreshPressed(sender: AnyObject) {
         // grab most recent student data
+        print("refresh")
     }
     
     @IBAction func pinPressed(sender: AnyObject) {
         // go to the information posting view
+        print("pin")
     }
     
     @IBAction func logoutPressed(sender: AnyObject) {
         // go back to the login screen
+        print("logout")
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }
