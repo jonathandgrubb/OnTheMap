@@ -11,8 +11,27 @@ import UIKit
 class MapListTabBarController: UITabBarController {
     
     @IBAction func refreshPressed(sender: AnyObject) {
-        // grab most recent student data
         print("refresh")
+        
+        // grab most recent student data
+        ParseClient.sharedInstance().getStudentLocations() { (success, studentLocations, error) in
+            
+            performUIUpdatesOnMain {
+                if (!success) {
+                    ControllerCommon.displayErrorDialog(self, message: "Could Not Retrieve Classmate Locations")
+                    return
+                }
+            }
+            
+            // tell the controllers containing the Map and List to redraw
+            for controller in self.childViewControllers {
+                if let c = controller as? Refreshable {
+                    c.dataRefreshed()
+                    return
+                }
+            }
+            
+        }
     }
     
     @IBAction func pinPressed(sender: AnyObject) {

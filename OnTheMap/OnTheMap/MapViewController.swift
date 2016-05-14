@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, MKMapViewDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, Refreshable {
 
     @IBOutlet weak var mapView: MKMapView!
     
@@ -27,17 +27,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 }
             }
             
-            // convert it to the format the map needs
-            ParseClient.sharedInstance().mkPointAnnotation(studentLocations) { (success, mapData) in
-                performUIUpdatesOnMain {
-                    if !success {
-                        ControllerCommon.displayErrorDialog(self, message: "Could Not Retrieve Classmate Locations")
-                    } else {
-                        self.mapView.addAnnotations(mapData!)
-                    }
-                }
-            }
-
+            self.dataRefreshed()
         }
     }
 
@@ -75,4 +65,24 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+    // This method is to be called every time we need to redraw because student data was refreshed
+    func dataRefreshed() {
+        if let studentLocations = ParseClient.sharedInstance().studentLocations {
+            // convert it to the format the map needs
+            ParseClient.sharedInstance().mkPointAnnotation(studentLocations) { (success, mapData) in
+                performUIUpdatesOnMain {
+                    if !success {
+                        ControllerCommon.displayErrorDialog(self, message: "Could Not Retrieve Classmate Locations")
+                    } else {
+                        let oldAnnotations = self.mapView.annotations
+                        // add the new annotations
+                        self.mapView.addAnnotations(mapData!)
+                        // remove the old annotations
+                        self.mapView.removeAnnotations(oldAnnotations)
+                    }
+                }
+            }
+        }
+    }
+
 }

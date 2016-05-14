@@ -34,7 +34,7 @@ class StudentListViewController: UIViewController {
     }
 }
 
-extension StudentListViewController: UITableViewDelegate, UITableViewDataSource {
+extension StudentListViewController: UITableViewDelegate, UITableViewDataSource, Refreshable {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
@@ -82,4 +82,12 @@ extension StudentListViewController: UITableViewDelegate, UITableViewDataSource 
         }
 
     }
+    
+    // This method is to be called every time we need to redraw because student data was refreshed
+    func dataRefreshed() {
+        performUIUpdatesOnMain {
+            self.studentsTableView.reloadData()
+        }
+    }
+    
 }

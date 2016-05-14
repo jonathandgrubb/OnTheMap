@@ -17,3 +17,7 @@ public class ControllerCommon {
     }
 
 }
+
+protocol Refreshable {
+    func dataRefreshed() -> Void
+}
