@@ -71,5 +71,22 @@ extension UdacityClient {
             }
         }
     }
+    
+    func logoutSession(completionHandlerForLogout: (success: Bool, error: UdacityClient.Errors?) -> Void) {
+        
+        // specify params (if any)
+        let parameters = [String:AnyObject]()
+        
+        taskForDELETEMethod(Methods.Session, parameters: parameters) { (result, error) in
+            // 3. Send the desired value(s) to completion handler */
+            if let error = error {
+                print(error)
+                completionHandlerForLogout(success: false, error: UdacityClient.Errors.LogoutFailed)
+            } else {
+                print(result)
+                completionHandlerForLogout(success: true, error: nil)
+            }
+        }
+    }
 
 }

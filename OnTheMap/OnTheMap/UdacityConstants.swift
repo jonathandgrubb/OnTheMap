@@ -11,6 +11,7 @@ extension UdacityClient {
     enum Errors {
         case NetworkError
         case LoginFailed
+        case LogoutFailed
         case RequiredContentMissing
     }
     

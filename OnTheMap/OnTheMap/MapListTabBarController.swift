@@ -40,8 +40,16 @@ class MapListTabBarController: UITabBarController {
     }
     
     @IBAction func logoutPressed(sender: AnyObject) {
+        
         // go back to the login screen
         print("logout")
-        dismissViewControllerAnimated(true, completion: nil)
+        
+        UdacityClient.sharedInstance().logoutSession { (success, error) in
+            // do not check for success since we are going back to the login screen either way
+            performUIUpdatesOnMain {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+        }
+        
     }
 }
