@@ -44,7 +44,7 @@ extension ParseClient {
     
     func studentLocationPresent(useLocalData: Bool = true, completionHandlerForLocation: (isPresent: Bool?, error: ParseClient.Errors?) -> Void) {
         
-        guard useLocalData == false else {
+        guard useLocalData == true else {
             // not implemented
             completionHandlerForLocation(isPresent: nil, error: ParseClient.Errors.NotImplemented)
             return

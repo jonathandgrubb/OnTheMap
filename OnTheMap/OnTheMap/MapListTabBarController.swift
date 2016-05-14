@@ -40,7 +40,7 @@ class MapListTabBarController: UITabBarController {
         // has this user pinned a location before?
         ParseClient.sharedInstance().studentLocationPresent(true) { (isPresent, error) in
             if let _ = error {
-                ControllerCommon.displayConfirmCancelDialog(self, message: "Cannot Determine If Student Location Already Posted. Would You Like To Possibly Overwrite Their Location", confirmButtonText: "Overwrite", confirmHandler: self.presentInformationPostingView)
+                ControllerCommon.displayConfirmCancelDialog(self, message: "Cannot Determine If Student Location Already Posted. Would You Like To Possibly Overwrite Their Location?", confirmButtonText: "Overwrite", confirmHandler: self.presentInformationPostingView)
             } else {
                 if let _ = isPresent where isPresent == true {
                     var message : String?
