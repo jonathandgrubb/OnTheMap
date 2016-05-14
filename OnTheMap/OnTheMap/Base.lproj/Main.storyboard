@@ -209,11 +209,14 @@
         <!--Navigation Controller-->
         <scene sceneID="Ncj-iz-YKY">
             <objects>
-                <navigationController id="5Wc-gV-JEJ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="PinNavigationController" id="5Wc-gV-JEJ" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eUI-Jv-gBl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <connections>
+                        <segue destination="E0X-oM-Sa0" kind="relationship" relationship="rootViewController" id="ATc-qK-mrO"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GrP-3e-Frs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -278,6 +281,7 @@
                             <constraint firstItem="EVa-2g-U5M" firstAttribute="top" secondItem="K9V-nh-ipq" secondAttribute="bottom" constant="20" id="ugu-L8-vFr"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="0re-Yr-oxD"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xn2-gS-0KB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

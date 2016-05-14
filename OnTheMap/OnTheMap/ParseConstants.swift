@@ -17,6 +17,8 @@ extension ParseClient {
         case NetworkError
         case RequiredContentMissing
         case DataConversionError
+        case InputError
+        case NotImplemented
     }
     
     struct Methods {

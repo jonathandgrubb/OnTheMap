@@ -35,8 +35,28 @@ class MapListTabBarController: UITabBarController {
     }
     
     @IBAction func pinPressed(sender: AnyObject) {
-        // go to the information posting view
         print("pin")
+        
+        // has this user pinned a location before?
+        ParseClient.sharedInstance().studentLocationPresent(true) { (isPresent, error) in
+            if let _ = error {
+                ControllerCommon.displayConfirmCancelDialog(self, message: "Cannot Determine If Student Location Already Posted. Would You Like To Possibly Overwrite Their Location", confirmButtonText: "Overwrite", confirmHandler: self.presentInformationPostingView)
+            } else {
+                if let _ = isPresent where isPresent == true {
+                    var message : String?
+                    if let fname = ParseClient.sharedInstance().firstName,
+                       let lname = ParseClient.sharedInstance().lastName {
+                        message = "User \"\(fname) \(lname)\" Has Already Posted a Student Location. Would You Like to Overwrite Their Location?"
+                    } else {
+                        message = "User Has Already Posted a Student Location. Would You Like to Overwrite Their Location?"
+                    }
+                    ControllerCommon.displayConfirmCancelDialog(self, message: message!, confirmButtonText: "Overwrite", confirmHandler: self.presentInformationPostingView)
+                }
+            }
+        }
+        
+        // go to the information posting view
+        presentInformationPostingView(nil)
     }
     
     @IBAction func logoutPressed(sender: AnyObject) {
@@ -51,5 +71,10 @@ class MapListTabBarController: UITabBarController {
             }
         }
         
+    }
+    
+    func presentInformationPostingView(alert: UIAlertAction?) {
+        let controller = storyboard!.instantiateViewControllerWithIdentifier("PinNavigationController") as! UINavigationController
+        presentViewController(controller, animated: true, completion: nil)
     }
 }

@@ -42,6 +42,36 @@ extension ParseClient {
 
     }
     
+    func studentLocationPresent(useLocalData: Bool = true, completionHandlerForLocation: (isPresent: Bool?, error: ParseClient.Errors?) -> Void) {
+        
+        guard useLocalData == false else {
+            // not implemented
+            completionHandlerForLocation(isPresent: nil, error: ParseClient.Errors.NotImplemented)
+            return
+        }
+        
+        guard let userID = self.userId else {
+            // we haven't yet saved the userId from login
+            completionHandlerForLocation(isPresent: nil, error: ParseClient.Errors.RequiredContentMissing)
+            return
+        }
+        
+        guard let locations = self.studentLocations else {
+            // not yet populated with student locations info
+            completionHandlerForLocation(isPresent: nil, error: ParseClient.Errors.RequiredContentMissing)
+            return
+        }
+        
+        for location in locations {
+            if location.userId == userID {
+                completionHandlerForLocation(isPresent: true, error: nil)
+                return
+            }
+        }
+        
+        completionHandlerForLocation(isPresent: false, error: nil)
+    }
+    
     func addStudentLocation() {
         
     }
