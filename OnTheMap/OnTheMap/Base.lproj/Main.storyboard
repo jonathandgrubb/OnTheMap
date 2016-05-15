@@ -231,7 +231,7 @@
                         <viewControllerLayoutGuide type="top" id="Msi-Gc-dNu"/>
                         <viewControllerLayoutGuide type="bottom" id="6SS-3y-DbF"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ouc-IN-UUd">
+                    <view key="view" contentMode="scaleToFill" id="Ouc-IN-UUd" customClass="UIControl">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -287,6 +287,9 @@
                             <constraint firstItem="EVa-2g-U5M" firstAttribute="top" secondItem="Msi-Gc-dNu" secondAttribute="bottom" constant="120" id="uWg-Os-FrG"/>
                             <constraint firstItem="EVa-2g-U5M" firstAttribute="top" secondItem="K9V-nh-ipq" secondAttribute="bottom" constant="20" id="ugu-L8-vFr"/>
                         </constraints>
+                        <connections>
+                            <action selector="userTappedBackground:" destination="E0X-oM-Sa0" eventType="touchDown" id="PZl-bx-S4N"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="0re-Yr-oxD">
                         <barButtonItem key="rightBarButtonItem" title="Cancel" id="Atw-US-uIj">

@@ -53,6 +53,12 @@ class WhereStudyingViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    // dimiss the keyboard when the user taps the background
+    // http://www.globalnerdy.com/2015/05/18/how-to-dismiss-the-ios-keyboard-when-the-user-taps-the-background-in-swift/
+    @IBAction func userTappedBackground(sender: AnyObject) {
+        view.endEditing(true)
+    }
+    
     // prepare the segue by giving the latitude and longitude to the next controller
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShareLinkSegue" {
@@ -67,6 +73,7 @@ class WhereStudyingViewController: UIViewController {
 }
 
 // delegate functions for yourLocationTextView
+// http://stackoverflow.com/questions/18607599/textviewdidendediting-is-not-called
 extension WhereStudyingViewController : UITextViewDelegate {
     
     // if the text is still "Enter Your Location Here", clear it
@@ -75,6 +82,21 @@ extension WhereStudyingViewController : UITextViewDelegate {
         if textView.text == "Enter Your Location Here" {
             textView.text = ""
         }
+    }
+    
+    // detect whether we are done editing
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        print("text changed")
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+    
+    func textViewShouldEndEditing(textView: UITextView) -> Bool {
+        print("should end editing")
+        return true
     }
     
     // if the text is clear, restore "Enter Your Location Here"
