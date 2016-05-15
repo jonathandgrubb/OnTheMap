@@ -10,4 +10,8 @@ import UIKit
 
 class ShareLinkViewController: UIViewController {
     
+    var latitude : Double?
+    var longitude : Double?
+    
+
 }

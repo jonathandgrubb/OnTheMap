@@ -7,15 +7,84 @@
 //
 
 import UIKit
+import CoreLocation
 
 class WhereStudyingViewController: UIViewController {
 
+    var latitude : Double?
+    var longitude : Double?
+    
     @IBOutlet weak var yourLocationTextView: UITextView!
     
     @IBAction func findOnTheMapButtonPressed(sender: AnyObject) {
+        if let text = yourLocationTextView.text {
+            let geocoder = CLGeocoder()
+            geocoder.geocodeAddressString(text) { (placemark, error) in
+                
+                if let placemark = placemark as [CLPlacemark]?,
+                   let location = placemark[0].location
+                   where placemark.count > 0 && error == nil {
+                    
+                    // successfully geocoded
+                    self.latitude = location.coordinate.latitude
+                    self.longitude = location.coordinate.longitude
+
+                } else {
+                    // Couldn't geocode this location
+                    performUIUpdatesOnMain {
+                        ControllerCommon.displayErrorDialog(self, message: "Could Not Geocode This Location")
+                        return
+                    }
+                }
+
+            }
+        } else {
+            // display an error
+            ControllerCommon.displayErrorDialog(self, message: "Must Enter a Location")
+        }
     }
     
     @IBAction func cancelButtonPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // should we allow the seque?
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if identifier == "ShareLinkSegue" && latitude != nil && longitude != nil {
+            return true
+        }
+        return false
+    }
+    
+    // prepare the segue by giving the latitude and longitude to the next controller
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShareLinkSegue" {
+            if let shareLinkVC = segue.destinationViewController as? ShareLinkViewController
+               where latitude != nil && longitude != nil {
+                shareLinkVC.latitude = latitude
+                shareLinkVC.longitude = longitude
+            }
+        }
+    }
+    
+}
+
+// delegate functions for yourLocationTextView
+extension WhereStudyingViewController : UITextViewDelegate {
+    
+    // if the text is still "Enter Your Location Here", clear it
+    func textViewDidBeginEditing(textView: UITextView) {
+        print("editing location")
+        if textView.text == "Enter Your Location Here" {
+            textView.text = ""
+        }
+    }
+    
+    // if the text is clear, restore "Enter Your Location Here"
+    func textViewDidEndEditing(textView: UITextView) {
+        print("done editing location")
+        if textView.text == "" {
+            textView.text = "Enter Your Location Here"
+        }
     }
 }

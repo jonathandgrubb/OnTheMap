@@ -241,6 +241,9 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="E0X-oM-Sa0" id="J9N-bG-kM0"/>
+                                </connections>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wd2-f4-xKS">
                                 <rect key="frame" x="250" y="510" width="114" height="30"/>
@@ -248,6 +251,7 @@
                                 <state key="normal" title="Find on the Map"/>
                                 <connections>
                                     <action selector="findOnTheMapButtonPressed:" destination="E0X-oM-Sa0" eventType="touchUpInside" id="37j-tl-XcM"/>
+                                    <segue destination="NN4-XT-Ttu" kind="show" identifier="ShareLinkSegue" id="JjV-B9-2IT"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="studying" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUJ-ce-Ds0">
@@ -299,6 +303,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xn2-gS-0KB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1276" y="1096"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="F1y-dh-sS1">
+            <objects>
+                <viewController id="NN4-XT-Ttu" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IRh-G6-l0N"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fY-r3-H3P"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WQh-3V-Vhe">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kI1-iJ-Sy9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2108" y="1096"/>
         </scene>
         <!--On The Map-->
         <scene sceneID="2mK-6j-P0G">
