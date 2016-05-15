@@ -245,15 +245,6 @@
                                     <outlet property="delegate" destination="E0X-oM-Sa0" id="J9N-bG-kM0"/>
                                 </connections>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wd2-f4-xKS">
-                                <rect key="frame" x="250" y="510" width="114" height="30"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Find on the Map"/>
-                                <connections>
-                                    <action selector="findOnTheMapButtonPressed:" destination="E0X-oM-Sa0" eventType="touchUpInside" id="37j-tl-XcM"/>
-                                    <segue destination="NN4-XT-Ttu" kind="show" identifier="ShareLinkSegue" id="JjV-B9-2IT"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="studying" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUJ-ce-Ds0">
                                 <rect key="frame" x="271" y="76" width="73" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -272,6 +263,14 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wd2-f4-xKS">
+                                <rect key="frame" x="250" y="510" width="114" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Find on the Map"/>
+                                <connections>
+                                    <action selector="findOnTheMapButtonPressed:" destination="E0X-oM-Sa0" eventType="touchUpInside" id="37j-tl-XcM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -298,16 +297,17 @@
                     </navigationItem>
                     <connections>
                         <outlet property="yourLocationTextView" destination="EVa-2g-U5M" id="Sta-fE-du5"/>
+                        <segue destination="NN4-XT-Ttu" kind="show" identifier="ShareLinkSegue" id="W52-Zk-rOj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xn2-gS-0KB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1276" y="1096"/>
         </scene>
-        <!--View Controller-->
+        <!--Share Link View Controller-->
         <scene sceneID="F1y-dh-sS1">
             <objects>
-                <viewController id="NN4-XT-Ttu" sceneMemberID="viewController">
+                <viewController id="NN4-XT-Ttu" customClass="ShareLinkViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IRh-G6-l0N"/>
                         <viewControllerLayoutGuide type="bottom" id="2fY-r3-H3P"/>

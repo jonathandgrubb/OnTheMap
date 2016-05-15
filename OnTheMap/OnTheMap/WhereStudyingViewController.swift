@@ -28,7 +28,12 @@ class WhereStudyingViewController: UIViewController {
                     // successfully geocoded
                     self.latitude = location.coordinate.latitude
                     self.longitude = location.coordinate.longitude
-
+                    
+                    // present the ShareLinkViewController
+                    performUIUpdatesOnMain {
+                        self.performSegueWithIdentifier("ShareLinkSegue", sender: nil)
+                    }
+                    
                 } else {
                     // Couldn't geocode this location
                     performUIUpdatesOnMain {
@@ -46,14 +51,6 @@ class WhereStudyingViewController: UIViewController {
     
     @IBAction func cancelButtonPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    // should we allow the seque?
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        if identifier == "ShareLinkSegue" && latitude != nil && longitude != nil {
-            return true
-        }
-        return false
     }
     
     // prepare the segue by giving the latitude and longitude to the next controller
