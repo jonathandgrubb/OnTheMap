@@ -72,7 +72,7 @@ class WhereStudyingViewController: UIViewController {
     
 }
 
-// delegate functions for yourLocationTextView
+// delegate functions for yourLocationTextView UITextView (around keeping default text and dismissing keyboard)
 // http://stackoverflow.com/questions/18607599/textviewdidendediting-is-not-called
 extension WhereStudyingViewController : UITextViewDelegate {
     
