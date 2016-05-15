@@ -23,6 +23,8 @@
 		AB8171B01CDFBA2500201A0C /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8171AF1CDFBA2500201A0C /* ParseConstants.swift */; };
 		AB8171B21CDFC07900201A0C /* ClientCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8171B11CDFC07900201A0C /* ClientCommon.swift */; };
 		AB84BFEC1CE7929B00B3558D /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB84BFEB1CE7929B00B3558D /* StudentInformation.swift */; };
+		AB98C9891CE8D13C00F61F07 /* WhereStudyingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98C9881CE8D13C00F61F07 /* WhereStudyingViewController.swift */; };
+		AB98C98B1CE8D23500F61F07 /* ShareLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98C98A1CE8D23500F61F07 /* ShareLinkViewController.swift */; };
 		ABA2E3BE1CE2C37300378A8E /* ControllerCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA2E3BD1CE2C37300378A8E /* ControllerCommon.swift */; };
 		ABA870011CD2EAC8002690BE /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA870001CD2EAC8002690BE /* MapViewController.swift */; };
 		ABA870031CD2EAEB002690BE /* StudentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA870021CD2EAEB002690BE /* StudentListViewController.swift */; };
@@ -70,6 +72,8 @@
 		AB8171AF1CDFBA2500201A0C /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
 		AB8171B11CDFC07900201A0C /* ClientCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientCommon.swift; sourceTree = "<group>"; };
 		AB84BFEB1CE7929B00B3558D /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
+		AB98C9881CE8D13C00F61F07 /* WhereStudyingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhereStudyingViewController.swift; sourceTree = "<group>"; };
+		AB98C98A1CE8D23500F61F07 /* ShareLinkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareLinkViewController.swift; sourceTree = "<group>"; };
 		ABA2E3BD1CE2C37300378A8E /* ControllerCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerCommon.swift; sourceTree = "<group>"; };
 		ABA870001CD2EAC8002690BE /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		ABA870021CD2EAEB002690BE /* StudentListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentListViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +215,8 @@
 				AB7D32F81CD8294500C575D5 /* MapListTabBarController.swift */,
 				ABA870001CD2EAC8002690BE /* MapViewController.swift */,
 				ABA870021CD2EAEB002690BE /* StudentListViewController.swift */,
+				AB98C9881CE8D13C00F61F07 /* WhereStudyingViewController.swift */,
+				AB98C98A1CE8D23500F61F07 /* ShareLinkViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -365,6 +371,8 @@
 				ABDF63551CBF38AF0006F572 /* GCDBlackBox.swift in Sources */,
 				AB7E23C41CBC90400067637B /* AppDelegate.swift in Sources */,
 				ABA870011CD2EAC8002690BE /* MapViewController.swift in Sources */,
+				AB98C98B1CE8D23500F61F07 /* ShareLinkViewController.swift in Sources */,
+				AB98C9891CE8D13C00F61F07 /* WhereStudyingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
