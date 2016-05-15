@@ -84,7 +84,7 @@ extension WhereStudyingViewController : UITextViewDelegate {
         }
     }
     
-    // detect whether we are done editing
+    // we're done editing if the user pressed enter
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         print("text changed")
         if text == "\n" {
@@ -94,6 +94,7 @@ extension WhereStudyingViewController : UITextViewDelegate {
         return true
     }
     
+    // if there's a question of whether we should end editing, the answer is yes
     func textViewShouldEndEditing(textView: UITextView) -> Bool {
         print("should end editing")
         return true
