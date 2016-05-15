@@ -14,10 +14,12 @@ class WhereStudyingViewController: UIViewController {
     var latitude : Double?
     var longitude : Double?
     
+    let defaultLocationText = "Enter Your Location Here"
+    
     @IBOutlet weak var yourLocationTextView: UITextView!
     
     @IBAction func findOnTheMapButtonPressed(sender: AnyObject) {
-        if let text = yourLocationTextView.text {
+        if let text = yourLocationTextView.text where text != defaultLocationText {
             let geocoder = CLGeocoder()
             geocoder.geocodeAddressString(text) { (placemark, error) in
                 
@@ -79,7 +81,7 @@ extension WhereStudyingViewController : UITextViewDelegate {
     // if the text is still "Enter Your Location Here", clear it
     func textViewDidBeginEditing(textView: UITextView) {
         print("editing location")
-        if textView.text == "Enter Your Location Here" {
+        if textView.text == defaultLocationText {
             textView.text = ""
         }
     }
@@ -104,7 +106,7 @@ extension WhereStudyingViewController : UITextViewDelegate {
     func textViewDidEndEditing(textView: UITextView) {
         print("done editing location")
         if textView.text == "" {
-            textView.text = "Enter Your Location Here"
+            textView.text = defaultLocationText
         }
     }
 }

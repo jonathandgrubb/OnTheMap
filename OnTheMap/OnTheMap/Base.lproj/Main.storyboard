@@ -42,12 +42,6 @@
                                     <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zrM-a3-e3z"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Don't have an account? Sign Up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhn-Dj-jqO">
-                                <rect key="frame" x="192" y="327" width="254" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BGE-xH-g92">
                                 <rect key="frame" x="172" y="418" width="289" height="30"/>
                                 <color key="backgroundColor" red="0.28573793172836304" green="0.41605484485626221" blue="0.71174108982086182" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -84,21 +78,31 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xm1-JV-nYH">
+                                <rect key="frame" x="192" y="361" width="248" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Don't have an account? Sign up">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="signUpButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3jM-Nr-gyL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.99904972314834595" green="0.46870201826095581" blue="0.0057524912990629673" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="VFA-JK-qcP" firstAttribute="top" secondItem="ZFY-Mf-O3n" secondAttribute="bottom" constant="18" id="74s-xv-pOK"/>
                             <constraint firstItem="ZFY-Mf-O3n" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="100" id="7Bb-rN-YYU"/>
                             <constraint firstItem="BGE-xH-g92" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="95P-on-UHi"/>
+                            <constraint firstItem="BGE-xH-g92" firstAttribute="top" secondItem="xm1-JV-nYH" secondAttribute="bottom" constant="70" id="BCz-cF-2nI"/>
                             <constraint firstItem="Hbl-0R-EnM" firstAttribute="top" secondItem="VFA-JK-qcP" secondAttribute="bottom" constant="8" id="Cya-Dq-fBS"/>
                             <constraint firstItem="aMn-Z2-MmZ" firstAttribute="top" secondItem="Hbl-0R-EnM" secondAttribute="bottom" constant="8" id="JFh-Vk-WQ8"/>
                             <constraint firstItem="VFA-JK-qcP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Nwi-bl-vPI"/>
                             <constraint firstItem="X2q-uw-sQt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="O0M-O8-xaL"/>
-                            <constraint firstItem="rhn-Dj-jqO" firstAttribute="top" secondItem="X2q-uw-sQt" secondAttribute="bottom" constant="8" id="QbD-Gw-jse"/>
-                            <constraint firstItem="rhn-Dj-jqO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TGP-B9-sfK"/>
                             <constraint firstItem="X2q-uw-sQt" firstAttribute="top" secondItem="aMn-Z2-MmZ" secondAttribute="bottom" constant="9" id="ZLz-y5-ag6"/>
-                            <constraint firstItem="BGE-xH-g92" firstAttribute="top" secondItem="rhn-Dj-jqO" secondAttribute="bottom" constant="70" id="bJ5-fc-Pxr"/>
+                            <constraint firstItem="xm1-JV-nYH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZsX-oQ-hBn"/>
                             <constraint firstItem="Hbl-0R-EnM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cpC-La-coh"/>
+                            <constraint firstItem="xm1-JV-nYH" firstAttribute="top" secondItem="X2q-uw-sQt" secondAttribute="bottom" constant="8" id="jmd-21-QxZ"/>
                             <constraint firstItem="ZFY-Mf-O3n" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mBZ-BN-3BO"/>
                             <constraint firstItem="aMn-Z2-MmZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="w0X-sS-G2w"/>
                         </constraints>
@@ -236,7 +240,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="Enter Your Location Here" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="EVa-2g-U5M">
-                                <rect key="frame" x="28" y="140" width="543" height="346"/>
+                                <rect key="frame" x="29" y="140" width="543" height="346"/>
                                 <color key="backgroundColor" red="0.19607843137254902" green="0.33725490196078434" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -263,27 +267,44 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wd2-f4-xKS">
-                                <rect key="frame" x="250" y="510" width="114" height="30"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Find on the Map"/>
-                                <connections>
-                                    <action selector="findOnTheMapButtonPressed:" destination="E0X-oM-Sa0" eventType="touchUpInside" id="37j-tl-XcM"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vJJ-qS-XSx">
+                                <rect key="frame" x="164" y="501" width="240" height="79"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wd2-f4-xKS">
+                                        <rect key="frame" x="63" y="25" width="114" height="30"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Find on the Map"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="findOnTheMapButtonPressed:" destination="E0X-oM-Sa0" eventType="touchUpInside" id="37j-tl-XcM"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.24799408783783783" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="A4z-xz-KuQ"/>
+                                    <constraint firstItem="wd2-f4-xKS" firstAttribute="centerY" secondItem="vJJ-qS-XSx" secondAttribute="centerY" id="NgY-8K-eta"/>
+                                    <constraint firstItem="wd2-f4-xKS" firstAttribute="centerX" secondItem="vJJ-qS-XSx" secondAttribute="centerX" id="abw-vv-4TO"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="zUJ-ce-Ds0" firstAttribute="top" secondItem="rg1-D8-tr6" secondAttribute="bottom" id="2ok-tc-zU9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vJJ-qS-XSx" secondAttribute="trailing" id="69f-AL-aqV"/>
                             <constraint firstItem="K9V-nh-ipq" firstAttribute="top" secondItem="zUJ-ce-Ds0" secondAttribute="bottom" constant="2" id="D3d-aK-own"/>
                             <constraint firstItem="zUJ-ce-Ds0" firstAttribute="centerX" secondItem="Ouc-IN-UUd" secondAttribute="centerX" id="J3h-YI-tds"/>
                             <constraint firstItem="rg1-D8-tr6" firstAttribute="centerX" secondItem="Ouc-IN-UUd" secondAttribute="centerX" id="QGs-a3-j20"/>
+                            <constraint firstItem="vJJ-qS-XSx" firstAttribute="leading" secondItem="Ouc-IN-UUd" secondAttribute="leadingMargin" id="SW0-FT-mPF"/>
                             <constraint firstItem="EVa-2g-U5M" firstAttribute="leading" secondItem="Ouc-IN-UUd" secondAttribute="leadingMargin" id="WHE-jA-P8l"/>
-                            <constraint firstItem="wd2-f4-xKS" firstAttribute="top" secondItem="EVa-2g-U5M" secondAttribute="bottom" constant="24" id="WtR-U6-hIu"/>
                             <constraint firstItem="K9V-nh-ipq" firstAttribute="centerX" secondItem="Ouc-IN-UUd" secondAttribute="centerX" id="XrB-LX-3Fs"/>
+                            <constraint firstItem="vJJ-qS-XSx" firstAttribute="top" secondItem="EVa-2g-U5M" secondAttribute="bottom" constant="15" id="Z2u-ei-Xqw"/>
                             <constraint firstAttribute="trailingMargin" secondItem="EVa-2g-U5M" secondAttribute="trailing" id="grq-nZ-t9C"/>
-                            <constraint firstItem="wd2-f4-xKS" firstAttribute="centerX" secondItem="Ouc-IN-UUd" secondAttribute="centerX" id="lfj-4n-NZN"/>
-                            <constraint firstItem="6SS-3y-DbF" firstAttribute="top" secondItem="EVa-2g-U5M" secondAttribute="bottom" constant="114" id="o7Y-kS-nCG"/>
+                            <constraint firstItem="6SS-3y-DbF" firstAttribute="top" secondItem="vJJ-qS-XSx" secondAttribute="bottom" id="m31-jO-UpA"/>
                             <constraint firstItem="EVa-2g-U5M" firstAttribute="top" secondItem="Msi-Gc-dNu" secondAttribute="bottom" constant="120" id="uWg-Os-FrG"/>
                             <constraint firstItem="EVa-2g-U5M" firstAttribute="top" secondItem="K9V-nh-ipq" secondAttribute="bottom" constant="20" id="ugu-L8-vFr"/>
                         </constraints>
@@ -322,15 +343,21 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="C9e-f6-uun">
                                 <rect key="frame" x="175" y="246" width="240" height="128"/>
                             </mapView>
-                            <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUZ-d6-UVn">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUZ-d6-UVn">
                                 <rect key="frame" x="20" y="472" width="560" height="128"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YPJ-ev-hgZ">
                                         <rect key="frame" x="253" y="50" width="52" height="30"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Submit"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.25" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="YPJ-ev-hgZ" firstAttribute="centerY" secondItem="aUZ-d6-UVn" secondAttribute="centerY" id="15a-1z-fm7"/>
                                     <constraint firstAttribute="height" constant="128" id="D3H-D5-BZP"/>

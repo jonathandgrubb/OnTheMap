@@ -60,6 +60,10 @@ class LoginViewController: UIViewController {
         ControllerCommon.displayErrorDialog(self, message: "Feature Not Available At This Time")
     }
     
+    @IBAction func signUpButtonPressed(sender: AnyObject) {
+        UIApplication.sharedApplication().openURL(NSURL(string: "https://www.udacity.com/account/auth#!/signup")!)
+    }
+    
     private func completeLogin(userId: String, firstName: String, lastName: String) {
         // save the stuff we need for the Parse API calls
         ParseClient.sharedInstance().userId = userId
