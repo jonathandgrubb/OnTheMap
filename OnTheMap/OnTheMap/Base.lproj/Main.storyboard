@@ -340,9 +340,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="C9e-f6-uun">
-                                <rect key="frame" x="175" y="246" width="240" height="128"/>
-                            </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUZ-d6-UVn">
                                 <rect key="frame" x="20" y="472" width="560" height="128"/>
                                 <subviews>
@@ -355,6 +352,9 @@
                                                 <integer key="value" value="3"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="submitPressed:" destination="NN4-XT-Ttu" eventType="touchUpInside" id="ilF-6T-0pH"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="0.25" colorSpace="calibratedWhite"/>
@@ -374,6 +374,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="C9e-f6-uun">
+                                <rect key="frame" x="175" y="246" width="240" height="128"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -389,6 +392,10 @@
                             <constraint firstItem="JeK-CW-OUU" firstAttribute="leading" secondItem="WQh-3V-Vhe" secondAttribute="leadingMargin" id="wVe-NV-dWD"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="shareLink" destination="JeK-CW-OUU" id="LRt-on-Wsr"/>
+                        <outlet property="studentMapView" destination="C9e-f6-uun" id="CbP-gs-6Hv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kI1-iJ-Sy9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

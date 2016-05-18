@@ -11,8 +11,7 @@ import CoreLocation
 
 class WhereStudyingViewController: UIViewController {
 
-    var latitude : Double?
-    var longitude : Double?
+    var studentInfo : StudentInformation?
     
     let defaultLocationText = "Enter Your Location Here"
     
@@ -27,9 +26,19 @@ class WhereStudyingViewController: UIViewController {
                    let location = placemark[0].location
                    where placemark.count > 0 && error == nil {
                     
-                    // successfully geocoded
-                    self.latitude = location.coordinate.latitude
-                    self.longitude = location.coordinate.longitude
+                    // do we still have the student info?
+                    if let firstName = ParseClient.sharedInstance().firstName,
+                       let lastName = ParseClient.sharedInstance().lastName,
+                       let userId = ParseClient.sharedInstance().userId {
+                        
+                        // yes. prepare the info for sending to the next step
+                        self.studentInfo = StudentInformation(firstName: firstName, lastName: lastName, mapString: text, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                        self.studentInfo!.userId = userId
+                        
+                    } else {
+                        ControllerCommon.displayErrorDialog(self, message: "Error. Cannot Post Location")
+                        return
+                    }
                     
                     // present the ShareLinkViewController
                     performUIUpdatesOnMain {
@@ -64,10 +73,9 @@ class WhereStudyingViewController: UIViewController {
     // prepare the segue by giving the latitude and longitude to the next controller
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShareLinkSegue" {
-            if let shareLinkVC = segue.destinationViewController as? ShareLinkViewController
-               where latitude != nil && longitude != nil {
-                shareLinkVC.latitude = latitude
-                shareLinkVC.longitude = longitude
+            if let shareLinkVC = segue.destinationViewController as? ShareLinkViewController,
+               let studentInfo = studentInfo {
+                shareLinkVC.studentInfo = studentInfo
             }
         }
     }

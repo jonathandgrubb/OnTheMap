@@ -12,12 +12,13 @@ struct StudentInformation {
     
     // MARK: Properties
     
-    let firstName: String
-    let lastName: String
-    let url: String?
-    let userId: String?
-    let latitude: Double
-    let longitude: Double
+    var firstName: String
+    var lastName: String
+    var url: String?
+    var userId: String?
+    var mapString: String
+    var latitude: Double
+    var longitude: Double
     
     // MARK: Initializers
     
@@ -27,8 +28,17 @@ struct StudentInformation {
         lastName  = dictionary[ParseClient.JSONResponseKeys.LastName]  as! String
         url       = dictionary[ParseClient.JSONResponseKeys.MediaUrl]  as? String
         userId    = dictionary[ParseClient.JSONResponseKeys.UniqueKey] as? String
+        mapString = dictionary[ParseClient.JSONResponseKeys.MapString] as! String
         latitude  = dictionary[ParseClient.JSONResponseKeys.Latitude]  as! Double
         longitude = dictionary[ParseClient.JSONResponseKeys.Longitude] as! Double
+    }
+    
+    init(firstName: String, lastName: String, mapString: String, latitude: Double, longitude: Double) {
+        self.firstName = firstName
+        self.lastName  = lastName
+        self.mapString = mapString
+        self.latitude  = latitude
+        self.longitude = longitude
     }
     
     static func studentsFromResults(results: [[String:AnyObject]]) -> [StudentInformation] {
