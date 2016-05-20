@@ -9,13 +9,17 @@
 import UIKit
 import CoreLocation
 
-class WhereStudyingViewController: UIViewController {
+class WhereStudyingViewController: UIViewControllerWithTextViewDefaultText {
 
     var studentInfo : StudentInformation?
     
-    let defaultLocationText = "Enter Your Location Here"
-    
     @IBOutlet weak var yourLocationTextView: UITextView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        defaultLocationText = "Enter Your Location Here"
+    }
     
     @IBAction func findOnTheMapButtonPressed(sender: AnyObject) {
         if let text = yourLocationTextView.text where text != defaultLocationText {
@@ -80,41 +84,4 @@ class WhereStudyingViewController: UIViewController {
         }
     }
     
-}
-
-// delegate functions for yourLocationTextView UITextView (around keeping default text and dismissing keyboard)
-// http://stackoverflow.com/questions/18607599/textviewdidendediting-is-not-called
-extension WhereStudyingViewController : UITextViewDelegate {
-    
-    // if the text is still "Enter Your Location Here", clear it
-    func textViewDidBeginEditing(textView: UITextView) {
-        print("editing location")
-        if textView.text == defaultLocationText {
-            textView.text = ""
-        }
-    }
-    
-    // we're done editing if the user pressed enter
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        print("text changed")
-        if text == "\n" {
-            textView.resignFirstResponder()
-            return false
-        }
-        return true
-    }
-    
-    // if there's a question of whether we should end editing, the answer is yes
-    func textViewShouldEndEditing(textView: UITextView) -> Bool {
-        print("should end editing")
-        return true
-    }
-    
-    // if the text is clear, restore "Enter Your Location Here"
-    func textViewDidEndEditing(textView: UITextView) {
-        print("done editing location")
-        if textView.text == "" {
-            textView.text = defaultLocationText
-        }
-    }
 }

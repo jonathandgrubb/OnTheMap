@@ -13,6 +13,7 @@ class StudentListViewController: UIViewController {
     @IBOutlet weak var studentsTableView: UITableView!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         
         // refresh student locations if for some reason they are not available
         if ParseClient.sharedInstance().studentLocations == nil {
