@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class ShareLinkViewController: UIViewController, MKMapViewDelegate {
+class ShareLinkViewController: UIViewControllerWithTextViewDefaultText, MKMapViewDelegate {
     
     var studentInfo : StudentInformation?
     
@@ -19,6 +19,8 @@ class ShareLinkViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        defaultLocationText = "Enter Your Location Here"
+
         // make sure we have the studentInfo
         if let info = studentInfo {
             
