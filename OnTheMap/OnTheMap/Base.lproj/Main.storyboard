@@ -336,7 +336,7 @@
                         <viewControllerLayoutGuide type="top" id="IRh-G6-l0N"/>
                         <viewControllerLayoutGuide type="bottom" id="2fY-r3-H3P"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="WQh-3V-Vhe">
+                    <view key="view" contentMode="scaleToFill" id="WQh-3V-Vhe" customClass="UIControl">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -391,6 +391,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="C9e-f6-uun" secondAttribute="trailing" id="lq3-Z7-2TR"/>
                             <constraint firstItem="JeK-CW-OUU" firstAttribute="leading" secondItem="WQh-3V-Vhe" secondAttribute="leadingMargin" id="wVe-NV-dWD"/>
                         </constraints>
+                        <connections>
+                            <action selector="userTappedBackground:" destination="NN4-XT-Ttu" eventType="touchDown" id="MNO-tp-6sj"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="shareLink" destination="JeK-CW-OUU" id="LRt-on-Wsr"/>
