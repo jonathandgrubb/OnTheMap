@@ -39,12 +39,15 @@ class ShareLinkViewController: UIViewControllerWithTextViewDefaultText, MKMapVie
             ParseClient.sharedInstance().mkPointAnnotation([info]) { (success, mapData) in
                 performUIUpdatesOnMain {
                     if !success {
+                    
                         ControllerCommon.displayErrorDialog(self, message: "Error Formatting The Location For The Map")
+                    
                     } else {
+                        
                         let oldAnnotations = self.studentMapView.annotations
-                        // add the new annotations
+                        // add the new annotation
                         self.studentMapView.addAnnotations(mapData!)
-                        // remove the old annotations
+                        // remove the old annotation
                         self.studentMapView.removeAnnotations(oldAnnotations)
                         
                         print("latitude: \(self.studentInfo!.latitude)")
@@ -70,12 +73,29 @@ class ShareLinkViewController: UIViewControllerWithTextViewDefaultText, MKMapVie
     }
 
     @IBAction func submitPressed(sender: AnyObject) {
-        // make sure the Link isn't the default text
         
-        // write the new location data
+        // make sure we have the studentInfo
+        if var info = studentInfo {
         
-        // dismiss this view controller
-        self.dismissViewControllerAnimated(true, completion: nil)
+            // make sure the Link isn't the default text
+            if let link = shareLink.text where link != defaultLocationText {
+            
+                // add the link to the student info
+                info.url = link
+                
+                // are we adding new or updating existing?
+                // write the new location data
+            
+                // dismiss this view controller
+                self.dismissViewControllerAnimated(true, completion: nil)
+            
+            } else {
+                ControllerCommon.displayErrorDialog(self, message: "Must Enter a Link.")
+            }
+        } else {
+            // somehow we lost the student info
+            ControllerCommon.displayErrorDialog(self, message: "Cannot Post Location Data")
+        }
     }
     
     func dismissKeyboard(gestureRecognizer: UIGestureRecognizer) {

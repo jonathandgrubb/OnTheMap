@@ -70,6 +70,10 @@ class ParseClient : NSObject {
         return task
     }
 
+    // POST
+    func taskForPOSTMethod(method: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    }
+    
     // create a URL from parameters
     private func parseURLFromParameters(parameters: [String:AnyObject], withPathExtension: String? = nil) -> NSURL {
         

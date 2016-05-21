@@ -72,11 +72,41 @@ extension ParseClient {
         completionHandlerForLocation(isPresent: false, error: nil)
     }
     
-    func addStudentLocation() {
+    func addStudentLocation(studentLocation: StudentInformation, completionHandlerForAdd: (success: Bool, error: ParseClient.Errors?) -> Void) -> Void {
         
+        // get local mutable copy
+        var location = studentLocation
+        
+        // specify params (if any)
+        let parameters : [String:AnyObject]
+        
+        guard location.userId != nil else {
+            // userId is required so we can find this student again
+            completionHandlerForAdd(success: false, error: ParseClient.Errors.InputError)
+            return
+        }
+        
+        guard location.url != nil else {
+            // not required for a lookup, but we need to be able to unwrap it
+            location.url = ""
+        }
+        
+        // build the json body with the username and password
+        let body = "{\"uniqueKey\": \"\(location.userId!)\", \"firstName\": \"\(location.firstName)\", \"lastName\": \"\(location.lastName)\",\"mapString\": \"\(location.mapString)\", \"mediaURL\": \"\(location.url!)\",\"latitude\": \(location.latitude), \"longitude\": \(location.longitude)}".dataUsingEncoding(NSUTF8StringEncoding)
+        
+        taskForPOSTethod(Methods.StudentLocation, parameters: parameters, jsonBody: body) { (result, error) in
+            // 3. Send the desired value(s) to completion handler
+            if let error = error {
+                print(error)
+                completionHandlerForAdd(success: false, error: ParseClient.Errors.NetworkError)
+            } else {
+                print(result)
+                completionHandlerForAdd(success: true, error: nil)
+            }
+        }
     }
     
-    func updateStudentLocation() {
+    func updateStudentLocation(studentLocation: StudentInformation, completionHandlerForUpdate: (success: Bool, error: ParseClient.Errors?) -> Void) -> Void {
         
     }
     
