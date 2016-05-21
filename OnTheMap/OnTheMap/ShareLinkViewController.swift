@@ -26,6 +26,7 @@ class ShareLinkViewController: UIViewControllerWithTextViewDefaultText, MKMapVie
         defaultLocationText = "Enter a Link to Share Here"
         
         // allow clicking the map to dismiss the keyboard too
+        // http://stackoverflow.com/questions/1275731/iphone-detecting-tap-in-mkmapview
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         singleTap.numberOfTapsRequired = 1;
         singleTap.numberOfTouchesRequired = 1;
@@ -69,6 +70,12 @@ class ShareLinkViewController: UIViewControllerWithTextViewDefaultText, MKMapVie
     }
 
     @IBAction func submitPressed(sender: AnyObject) {
+        // make sure the Link isn't the default text
+        
+        // write the new location data
+        
+        // dismiss this view controller
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func dismissKeyboard(gestureRecognizer: UIGestureRecognizer) {
