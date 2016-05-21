@@ -54,7 +54,10 @@ class ShareLinkViewController: UIViewControllerWithTextViewDefaultText, MKMapVie
         }
     }
 
-    
+    @IBAction func cancelButtonPressed(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
     @IBAction func submitPressed(sender: AnyObject) {
     }
 }
