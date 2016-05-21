@@ -8,34 +8,9 @@
 
 import UIKit
 
-class StudentListViewController: UIViewController {
+class StudentListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Refreshable {
 
     @IBOutlet weak var studentsTableView: UITableView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // refresh student locations if for some reason they are not available
-        if ParseClient.sharedInstance().studentLocations == nil {
-            ParseClient.sharedInstance().getStudentLocations() { (success, studentLocations, error) in
-                performUIUpdatesOnMain {
-                    if (!success) {
-                        ControllerCommon.displayErrorDialog(self, message: "Could Not Retrieve Classmate Locations")
-                        return
-                    }
-                }
-            }
-        }
-        
-        // configure tap recognizer
-        //let tapRecognizer = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
-        //tapRecognizer.numberOfTapsRequired = 1
-        //tapRecognizer.delegate = self
-        //view.addGestureRecognizer(tapRecognizer)
-    }
-}
-
-extension StudentListViewController: UITableViewDelegate, UITableViewDataSource, Refreshable {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         

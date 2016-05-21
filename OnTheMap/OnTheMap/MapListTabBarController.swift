@@ -10,28 +10,12 @@ import UIKit
 
 class MapListTabBarController: UITabBarController {
     
+    override func viewWillAppear(animated: Bool) {
+        refreshData()
+    }
+    
     @IBAction func refreshPressed(sender: AnyObject) {
-        print("refresh")
-        
-        // grab most recent student data
-        ParseClient.sharedInstance().getStudentLocations() { (success, studentLocations, error) in
-            
-            performUIUpdatesOnMain {
-                if (!success) {
-                    ControllerCommon.displayErrorDialog(self, message: "Could Not Retrieve Classmate Locations")
-                    return
-                }
-            }
-            
-            // tell the controllers containing the Map and List to redraw
-            for controller in self.childViewControllers {
-                if let c = controller as? Refreshable {
-                    c.dataRefreshed()
-                    return
-                }
-            }
-            
-        }
+        refreshData()
     }
     
     @IBAction func pinPressed(sender: AnyObject) {
@@ -77,4 +61,29 @@ class MapListTabBarController: UITabBarController {
         let controller = storyboard!.instantiateViewControllerWithIdentifier("PinNavigationController") as! UINavigationController
         presentViewController(controller, animated: true, completion: nil)
     }
+    
+    func refreshData() {
+        print("refresh")
+        
+        // grab most recent student data
+        ParseClient.sharedInstance().getStudentLocations() { (success, studentLocations, error) in
+            
+            performUIUpdatesOnMain {
+                if (!success) {
+                    ControllerCommon.displayErrorDialog(self, message: "Could Not Retrieve Classmate Locations")
+                    return
+                }
+            }
+            
+            // tell the controllers containing the Map and List to redraw
+            for controller in self.childViewControllers {
+                if let c = controller as? Refreshable {
+                    c.dataRefreshed()
+                    return
+                }
+            }
+            
+        }
+    }
+    
 }

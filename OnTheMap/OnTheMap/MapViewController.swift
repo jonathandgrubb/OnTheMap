@@ -13,24 +13,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, Refreshable {
 
     @IBOutlet weak var mapView: MKMapView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // The "locations" array is an array of dictionary objects that are similar to the JSON
-        // data that you can download from parse.
-        ParseClient.sharedInstance().getStudentLocations() { (success, studentLocations, error) in
-            
-            performUIUpdatesOnMain {
-                if (!success) {
-                    ControllerCommon.displayErrorDialog(self, message: "Could Not Retrieve Classmate Locations")
-                    return
-                }
-            }
-            
-            self.dataRefreshed()
-        }
-    }
-
     // Here we create a view with a "right callout accessory view". You might choose to look into other
     // decoration alternatives. Notice the similarity between this method and the cellForRowAtIndexPath
     // method in TableViewDataSource.
