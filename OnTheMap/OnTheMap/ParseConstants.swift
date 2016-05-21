@@ -18,6 +18,7 @@ extension ParseClient {
         case RequiredContentMissing
         case DataConversionError
         case InputError
+        case RecordNotAdded
         case NotImplemented
     }
     

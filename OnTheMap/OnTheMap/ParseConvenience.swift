@@ -78,7 +78,7 @@ extension ParseClient {
         var location = studentLocation
         
         // specify params (if any)
-        let parameters : [String:AnyObject]
+        let parameters = [String:AnyObject]()
         
         guard location.userId != nil else {
             // userId is required so we can find this student again
@@ -86,22 +86,29 @@ extension ParseClient {
             return
         }
         
-        guard location.url != nil else {
+        if location.url == nil {
             // not required for a lookup, but we need to be able to unwrap it
             location.url = ""
         }
         
         // build the json body with the username and password
-        let body = "{\"uniqueKey\": \"\(location.userId!)\", \"firstName\": \"\(location.firstName)\", \"lastName\": \"\(location.lastName)\",\"mapString\": \"\(location.mapString)\", \"mediaURL\": \"\(location.url!)\",\"latitude\": \(location.latitude), \"longitude\": \(location.longitude)}".dataUsingEncoding(NSUTF8StringEncoding)
+        let body = "{\"uniqueKey\": \"\(location.userId!)\", \"firstName\": \"\(location.firstName)\", \"lastName\": \"\(location.lastName)\",\"mapString\": \"\(location.mapString)\", \"mediaURL\": \"\(location.url!)\",\"latitude\": \(location.latitude), \"longitude\": \(location.longitude)}"
         
-        taskForPOSTethod(Methods.StudentLocation, parameters: parameters, jsonBody: body) { (result, error) in
+        taskForPOSTMethod(Methods.StudentLocation, parameters: parameters, jsonBody: body) { (result, error) in
             // 3. Send the desired value(s) to completion handler
             if let error = error {
                 print(error)
+                // assume a network problem
                 completionHandlerForAdd(success: false, error: ParseClient.Errors.NetworkError)
             } else {
                 print(result)
-                completionHandlerForAdd(success: true, error: nil)
+                if result["createdAt"] == nil || result["objectId"] == nil {
+                    // the record was not added
+                    completionHandlerForAdd(success: false, error: ParseClient.Errors.RecordNotAdded)
+                } else {
+                    // the record was added
+                    completionHandlerForAdd(success: true, error: nil)
+                }
             }
         }
     }

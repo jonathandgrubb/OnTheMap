@@ -85,9 +85,19 @@ class ShareLinkViewController: UIViewControllerWithTextViewDefaultText, MKMapVie
                 
                 // are we adding new or updating existing?
                 // write the new location data
-            
-                // dismiss this view controller
-                self.dismissViewControllerAnimated(true, completion: nil)
+                ParseClient.sharedInstance().addStudentLocation(info, completionHandlerForAdd: { (success, error) in
+                    
+                    if !success {
+                        if let error = error where error == ParseClient.Errors.NetworkError {
+                            ControllerCommon.displayErrorDialog(self, message: "Network Error. Submit Again Later.")
+                        } else {
+                            ControllerCommon.displayErrorDialog(self, message: "Could Not Add Location Info")
+                        }
+                    }
+                    // dismiss this view controller
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                
+                })
             
             } else {
                 ControllerCommon.displayErrorDialog(self, message: "Must Enter a Link.")
