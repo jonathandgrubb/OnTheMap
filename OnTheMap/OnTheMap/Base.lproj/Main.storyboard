@@ -352,6 +352,9 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="NN4-XT-Ttu" id="rEr-t2-pr4"/>
+                                </connections>
                             </textView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="C9e-f6-uun">
                                 <rect key="frame" x="175" y="246" width="240" height="128"/>
@@ -398,6 +401,13 @@
                             <action selector="userTappedBackground:" destination="NN4-XT-Ttu" eventType="touchDown" id="MNO-tp-6sj"/>
                         </connections>
                     </view>
+                    <navigationItem key="navigationItem" id="2xQ-eJ-8Fn">
+                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="ELY-Qb-geI">
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="NN4-XT-Ttu" id="t7J-f7-G3t"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="shareLink" destination="JeK-CW-OUU" id="LRt-on-Wsr"/>
                         <outlet property="studentMapView" destination="C9e-f6-uun" id="CbP-gs-6Hv"/>

@@ -23,7 +23,7 @@ class ShareLinkViewController: UIViewControllerWithTextViewDefaultText, MKMapVie
         self.navigationItem.hidesBackButton = true
         
         // set the default text for our UITextView
-        defaultLocationText = "Enter Your Location Here"
+        defaultLocationText = "Enter a Link to Share Here"
 
         // make sure we have the studentInfo
         if let info = studentInfo {
