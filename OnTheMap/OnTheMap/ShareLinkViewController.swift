@@ -24,6 +24,12 @@ class ShareLinkViewController: UIViewControllerWithTextViewDefaultText, MKMapVie
         
         // set the default text for our UITextView
         defaultLocationText = "Enter a Link to Share Here"
+        
+        // allow clicking the map to dismiss the keyboard too
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        singleTap.numberOfTapsRequired = 1;
+        singleTap.numberOfTouchesRequired = 1;
+        studentMapView.addGestureRecognizer(singleTap)
 
         // make sure we have the studentInfo
         if let info = studentInfo {
@@ -63,5 +69,9 @@ class ShareLinkViewController: UIViewControllerWithTextViewDefaultText, MKMapVie
     }
 
     @IBAction func submitPressed(sender: AnyObject) {
+    }
+    
+    func dismissKeyboard(gestureRecognizer: UIGestureRecognizer) {
+        view.endEditing(true)
     }
 }
