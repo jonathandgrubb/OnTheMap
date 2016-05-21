@@ -68,12 +68,6 @@ class WhereStudyingViewController: UIViewControllerWithTextViewDefaultText {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    // dimiss the keyboard when the user taps the background
-    // http://www.globalnerdy.com/2015/05/18/how-to-dismiss-the-ios-keyboard-when-the-user-taps-the-background-in-swift/
-    @IBAction func userTappedBackground(sender: AnyObject) {
-        view.endEditing(true)
-    }
-    
     // prepare the segue by giving the latitude and longitude to the next controller
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShareLinkSegue" {

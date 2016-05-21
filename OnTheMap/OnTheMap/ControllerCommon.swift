@@ -65,4 +65,10 @@ public class UIViewControllerWithTextViewDefaultText : UIViewController, UITextV
             textView.text = defaultLocationText
         }
     }
+    
+    // dimiss the keyboard when the user taps the background
+    // http://www.globalnerdy.com/2015/05/18/how-to-dismiss-the-ios-keyboard-when-the-user-taps-the-background-in-swift/
+    @IBAction func userTappedBackground(sender: AnyObject) {
+        view.endEditing(true)
+    }
 }
