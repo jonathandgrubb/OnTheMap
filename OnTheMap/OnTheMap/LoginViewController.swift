@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewControllerWithDismissableKeyboard {
 
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var userName: UITextField!

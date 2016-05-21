@@ -15,7 +15,7 @@
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="UIControl">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -106,6 +106,9 @@
                             <constraint firstItem="ZFY-Mf-O3n" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mBZ-BN-3BO"/>
                             <constraint firstItem="aMn-Z2-MmZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="w0X-sS-G2w"/>
                         </constraints>
+                        <connections>
+                            <action selector="userTappedBackground:" destination="BYZ-38-t0r" eventType="touchDown" id="xux-iM-9H1"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="password" destination="aMn-Z2-MmZ" id="5NW-sf-KgJ"/>
