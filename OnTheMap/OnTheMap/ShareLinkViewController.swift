@@ -19,6 +19,10 @@ class ShareLinkViewController: UIViewControllerWithTextViewDefaultText, MKMapVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // hide the back button
+        self.navigationItem.hidesBackButton = true
+        
+        // set the default text for our UITextView
         defaultLocationText = "Enter Your Location Here"
 
         // make sure we have the studentInfo

@@ -18,6 +18,7 @@ class WhereStudyingViewController: UIViewControllerWithTextViewDefaultText {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // set the default text for our UITextView
         defaultLocationText = "Enter Your Location Here"
     }
     
