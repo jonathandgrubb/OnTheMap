@@ -66,31 +66,48 @@ class MapListTabBarController: UITabBarController {
         print("refresh")
         
         // give the Map and List controllers the opportunity to display the 'circle of patience'
+        childrenDataWillRefresh()
+        
+        // grab most recent student data
+        ParseClient.sharedInstance().getStudentLocations() { (success, studentLocations, error) in
+            
+            if (!success) {
+                performUIUpdatesOnMain {
+                    self.childrenDataIsRefreshed()
+                    ControllerCommon.displayErrorDialog(self, message: "Could Not Retrieve Classmate Locations")
+                }
+                return
+            } else {
+                // refresh whether this particular student already has an entry
+                ParseClient.sharedInstance().studentLocationPresent(false) { (isPresent, error) in
+                    // successful refresh requires no action since it is saved in the model
+                    self.childrenDataIsRefreshed()
+                    if error != nil {
+                        ControllerCommon.displayErrorDialog(self, message: "Could Not Retrieve Location For Your User From Network")
+                    }
+                }
+            }
+        }
+    
+    
+    }
+    
+    // tells child controllers that we about to refresh data over the network
+    func childrenDataWillRefresh() {
         for controller in self.childViewControllers {
             if let c = controller as? Refreshable {
                 c.dataWillRefresh()
             }
         }
-        
-        // grab most recent student data
-        ParseClient.sharedInstance().getStudentLocations() { (success, studentLocations, error) in
-            
-            // tell the controllers containing the Map and List to redraw
-            for controller in self.childViewControllers {
-                if let c = controller as? Refreshable {
-                    c.dataIsRefreshed()
-                }
-            }
-            
-            performUIUpdatesOnMain {
-                if (!success) {
-                    ControllerCommon.displayErrorDialog(self, message: "Could Not Retrieve Classmate Locations")
-                    return
-                }
+    }
+    
+    // tells child controllers that we are done refreshing data over the network
+    func childrenDataIsRefreshed() {
+        for controller in self.childViewControllers {
+            if let c = controller as? Refreshable {
+                c.dataIsRefreshed()
             }
         }
-    
-    
     }
     
 }
