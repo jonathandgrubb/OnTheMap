@@ -13,6 +13,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, Refreshable {
 
     @IBOutlet weak var mapView: MKMapView!
     
+    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+    
+    override func viewDidLoad() {
+        activityIndicator.hidesWhenStopped = true;
+        //activityIndicator.activityIndicatorViewStyle  = UIActivityIndicatorViewStyle.Gray;
+        activityIndicator.center = view.center;
+        self.view.addSubview(activityIndicator)
+    }
+    
     // Here we create a view with a "right callout accessory view". You might choose to look into other
     // decoration alternatives. Notice the similarity between this method and the cellForRowAtIndexPath
     // method in TableViewDataSource.
@@ -47,13 +56,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, Refreshable {
         }
     }
     
+    // This method is to be called every time data is about to be refreshed
+    func dataWillRefresh() {
+        activityIndicator.startAnimating()
+    }
+    
     // This method is to be called every time we need to redraw because student data was refreshed
-    func dataRefreshed() {
+    func dataIsRefreshed() {
         if let studentLocations = ParseClient.sharedInstance().studentLocations {
             // convert it to the format the map needs
             ParseClient.sharedInstance().mkPointAnnotation(studentLocations) { (success, mapData) in
                 performUIUpdatesOnMain {
                     if !success {
+                        self.activityIndicator.stopAnimating()
                         ControllerCommon.displayErrorDialog(self, message: "Could Not Retrieve Classmate Locations")
                     } else {
                         let oldAnnotations = self.mapView.annotations
@@ -61,6 +76,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, Refreshable {
                         self.mapView.addAnnotations(mapData!)
                         // remove the old annotations
                         self.mapView.removeAnnotations(oldAnnotations)
+                        
+                        self.activityIndicator.stopAnimating()
                     }
                 }
             }

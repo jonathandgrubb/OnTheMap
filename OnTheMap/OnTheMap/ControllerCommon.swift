@@ -25,7 +25,8 @@ public class ControllerCommon {
 }
 
 protocol Refreshable {
-    func dataRefreshed() -> Void
+    func dataWillRefresh() -> Void
+    func dataIsRefreshed() -> Void
 }
 
 // delegate functions for yourLocationTextView UITextView (around keeping default text and dismissing keyboard)

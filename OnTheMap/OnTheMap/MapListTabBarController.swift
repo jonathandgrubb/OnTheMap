@@ -65,6 +65,13 @@ class MapListTabBarController: UITabBarController {
     func refreshData() {
         print("refresh")
         
+        // give the Map and List controllers the opportunity to display the 'circle of patience'
+        for controller in self.childViewControllers {
+            if let c = controller as? Refreshable {
+                c.dataWillRefresh()
+            }
+        }
+        
         // grab most recent student data
         ParseClient.sharedInstance().getStudentLocations() { (success, studentLocations, error) in
             
@@ -78,8 +85,7 @@ class MapListTabBarController: UITabBarController {
             // tell the controllers containing the Map and List to redraw
             for controller in self.childViewControllers {
                 if let c = controller as? Refreshable {
-                    c.dataRefreshed()
-                    return
+                    c.dataIsRefreshed()
                 }
             }
             

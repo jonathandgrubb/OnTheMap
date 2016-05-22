@@ -12,6 +12,15 @@ class StudentListViewController: UIViewController, UITableViewDelegate, UITableV
 
     @IBOutlet weak var studentsTableView: UITableView!
     
+    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+    
+    override func viewDidLoad() {
+        activityIndicator.hidesWhenStopped = true;
+        //activityIndicator.activityIndicatorViewStyle  = UIActivityIndicatorViewStyle.Gray;
+        activityIndicator.center = view.center;
+        self.view.addSubview(activityIndicator)
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let CellReuseId = "StudentSearchCell"
@@ -59,10 +68,17 @@ class StudentListViewController: UIViewController, UITableViewDelegate, UITableV
 
     }
     
+    func dataWillRefresh() {
+        activityIndicator.startAnimating()
+    }
+    
     // This method is to be called every time we need to redraw because student data was refreshed
-    func dataRefreshed() {
+    func dataIsRefreshed() {
         performUIUpdatesOnMain {
-            self.studentsTableView.reloadData()
+            if let tableView = self.studentsTableView {
+                tableView.reloadData()
+            }
+            self.activityIndicator.stopAnimating()
         }
     }
     
