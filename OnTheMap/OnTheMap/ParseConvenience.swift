@@ -44,32 +44,62 @@ extension ParseClient {
     
     func studentLocationPresent(useLocalData: Bool = true, completionHandlerForLocation: (isPresent: Bool?, error: ParseClient.Errors?) -> Void) {
         
-        guard useLocalData == true else {
-            // not implemented
-            completionHandlerForLocation(isPresent: nil, error: ParseClient.Errors.NotImplemented)
-            return
-        }
-        
         guard let userID = self.userId else {
             // we haven't yet saved the userId from login
             completionHandlerForLocation(isPresent: nil, error: ParseClient.Errors.RequiredContentMissing)
             return
         }
         
-        guard let locations = self.studentLocations else {
-            // not yet populated with student locations info
-            completionHandlerForLocation(isPresent: nil, error: ParseClient.Errors.RequiredContentMissing)
-            return
-        }
-        
-        for location in locations {
-            if location.userId == userID {
-                completionHandlerForLocation(isPresent: true, error: nil)
+        if useLocalData {
+
+            // use the local 100 results we already have stored
+            
+            guard let locations = self.studentLocations else {
+                // not yet populated with student locations info
+                completionHandlerForLocation(isPresent: nil, error: ParseClient.Errors.RequiredContentMissing)
                 return
             }
+            
+            for location in locations {
+                if location.userId == userID {
+                    completionHandlerForLocation(isPresent: true, error: nil)
+                    return
+                }
+            }
+            
+            completionHandlerForLocation(isPresent: false, error: nil)
+
+        } else {
+            
+            // reach out via the API to query for this individual
+            
+            // specify params (if any)
+            let parameters = [String:AnyObject]()
+            
+            let args = userID.dataUsingEncoding(NSUTF8StringEncoding)
+            let method = "\(Methods.StudentLocation)?where=\(args)"
+            
+            taskForGETMethod(method, parameters: parameters) { (result, error) in
+                // 3. Send the desired value(s) to completion handler */
+                if let error = error {
+                    print(error)
+                    completionHandlerForLocation(isPresent: false, error: ParseClient.Errors.NetworkError)
+                } else {
+                    print(result)
+                    // get the students' locations
+                    if result["createdAt"] != nil {
+                        // convert it to the format the map needs
+                        completionHandlerForLocation(isPresent: true, error: nil)
+                    } else {
+                        print("Could not find results in \(result)")
+                        completionHandlerForLocation(isPresent: false, error: ParseClient.Errors.RequiredContentMissing)
+                    }
+                }
+            }
+            
+
         }
         
-        completionHandlerForLocation(isPresent: false, error: nil)
     }
     
     func addStudentLocation(studentLocation: StudentInformation, completionHandlerForAdd: (success: Bool, error: ParseClient.Errors?) -> Void) -> Void {
