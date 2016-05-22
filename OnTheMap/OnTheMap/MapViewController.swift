@@ -16,8 +16,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, Refreshable {
     var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         activityIndicator.hidesWhenStopped = true;
-        //activityIndicator.activityIndicatorViewStyle  = UIActivityIndicatorViewStyle.Gray;
         activityIndicator.center = view.center;
         self.view.addSubview(activityIndicator)
     }

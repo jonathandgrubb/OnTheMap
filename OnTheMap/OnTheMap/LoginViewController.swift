@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  OnTheMap
 //
 //  Created by Jonathan Grubb on 4/11/16.
@@ -13,9 +13,13 @@ class LoginViewController: UIViewControllerWithDismissableKeyboard {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var userName: UITextField!
     
+    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        activityIndicator.hidesWhenStopped = true;
+        activityIndicator.center = view.center;
+        self.view.addSubview(activityIndicator)
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,10 +29,12 @@ class LoginViewController: UIViewControllerWithDismissableKeyboard {
 
     @IBAction func loginPressed(sender: AnyObject) {
         if let uname = userName.text, pw = password.text {
+            activityIndicator.startAnimating()
             // try to get the session id from udacity
             UdacityClient.sharedInstance().getSessionInfo(uname, password: pw) { (success, sessionID, userID, error) in
                     if (!success) {
                         performUIUpdatesOnMain {
+                            self.activityIndicator.stopAnimating()
                             if (error == UdacityClient.Errors.LoginFailed) {
                                 ControllerCommon.displayErrorDialog(self, message: "Invalid Email or Password")
                             } else {
@@ -39,6 +45,7 @@ class LoginViewController: UIViewControllerWithDismissableKeyboard {
                         // get the nickname for this user that logged in
                         UdacityClient.sharedInstance().getUsersName(userID!) { (success, firstName, lastName, error) in
                             performUIUpdatesOnMain {
+                                self.activityIndicator.stopAnimating()
                                 if (success) {
                                     // transition to the MapNavigationController
                                     self.completeLogin(userID!, firstName: firstName!, lastName: lastName!)
