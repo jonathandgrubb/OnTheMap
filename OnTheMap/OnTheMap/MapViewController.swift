@@ -9,18 +9,9 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, MKMapViewDelegate, Refreshable {
+class MapViewController: CustomUIViewController, MKMapViewDelegate, Refreshable {
 
     @IBOutlet weak var mapView: MKMapView!
-    
-    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        activityIndicator.hidesWhenStopped = true;
-        activityIndicator.center = view.center;
-        self.view.addSubview(activityIndicator)
-    }
     
     // Here we create a view with a "right callout accessory view". You might choose to look into other
     // decoration alternatives. Notice the similarity between this method and the cellForRowAtIndexPath

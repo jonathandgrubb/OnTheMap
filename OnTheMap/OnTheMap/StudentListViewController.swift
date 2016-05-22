@@ -8,18 +8,9 @@
 
 import UIKit
 
-class StudentListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Refreshable {
+class StudentListViewController: CustomUIViewController, UITableViewDelegate, UITableViewDataSource, Refreshable {
 
     @IBOutlet weak var studentsTableView: UITableView!
-    
-    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        activityIndicator.hidesWhenStopped = true;
-        activityIndicator.center = view.center;
-        self.view.addSubview(activityIndicator)
-    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         

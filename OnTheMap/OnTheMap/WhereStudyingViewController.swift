@@ -15,15 +15,9 @@ class WhereStudyingViewController: UIViewControllerWithTextViewDefaultText {
     
     @IBOutlet weak var yourLocationTextView: UITextView!
     
-    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        activityIndicator.hidesWhenStopped = true;
-        activityIndicator.center = view.center;
-        self.view.addSubview(activityIndicator)
-
         // set the default text for our UITextView
         defaultLocationText = "Enter Your Location Here"
     }

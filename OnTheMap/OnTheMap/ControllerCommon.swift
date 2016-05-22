@@ -31,7 +31,7 @@ protocol Refreshable {
 
 // delegate functions for yourLocationTextView UITextView (around keeping default text and dismissing keyboard)
 // http://stackoverflow.com/questions/18607599/textviewdidendediting-is-not-called
-public class UIViewControllerWithTextViewDefaultText : UIViewControllerWithDismissableKeyboard, UITextViewDelegate {
+public class UIViewControllerWithTextViewDefaultText : CustomUIViewController, UITextViewDelegate {
     
     var defaultLocationText : String?
     
@@ -69,7 +69,21 @@ public class UIViewControllerWithTextViewDefaultText : UIViewControllerWithDismi
     
 }
 
-public class UIViewControllerWithDismissableKeyboard : UIViewController {
+public class CustomUIViewController : UIViewController {
+
+    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+    
+    override public func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // programmatically adding UIActivityView:
+        // http://sourcefreeze.com/uiactivityindicatorview-example-using-swift-in-ios/
+        // http://stackoverflow.com/questions/7212859/how-to-set-an-uiactivityindicatorview-when-loading-a-uitableviewcell
+        activityIndicator.hidesWhenStopped = true;
+        activityIndicator.center = view.center;
+        self.view.addSubview(activityIndicator)
+    }
+    
     // dimiss the keyboard when the user taps the background
     // http://www.globalnerdy.com/2015/05/18/how-to-dismiss-the-ios-keyboard-when-the-user-taps-the-background-in-swift/
     @IBAction func userTappedBackground(sender: AnyObject) {

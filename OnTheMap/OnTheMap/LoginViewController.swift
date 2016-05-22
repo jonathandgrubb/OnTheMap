@@ -8,20 +8,11 @@
 
 import UIKit
 
-class LoginViewController: UIViewControllerWithDismissableKeyboard {
+class LoginViewController: CustomUIViewController {
 
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var userName: UITextField!
     
-    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        activityIndicator.hidesWhenStopped = true;
-        activityIndicator.center = view.center;
-        self.view.addSubview(activityIndicator)
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

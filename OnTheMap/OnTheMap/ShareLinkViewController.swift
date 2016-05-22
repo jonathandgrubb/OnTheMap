@@ -16,15 +16,9 @@ class ShareLinkViewController: UIViewControllerWithTextViewDefaultText, MKMapVie
     @IBOutlet weak var shareLink: UITextView!
     @IBOutlet weak var studentMapView: MKMapView!
     
-    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        activityIndicator.hidesWhenStopped = true;
-        activityIndicator.center = view.center;
-        self.view.addSubview(activityIndicator)
-
         // hide the back button
         self.navigationItem.hidesBackButton = true
         
