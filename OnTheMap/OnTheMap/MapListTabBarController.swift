@@ -22,25 +22,27 @@ class MapListTabBarController: UITabBarController {
         print("pin")
         
         // has this user pinned a location before?
-        ParseClient.sharedInstance().studentLocationPresent(true) { (isPresent, error) in
-            if let _ = error {
-                ControllerCommon.displayConfirmCancelDialog(self, message: "Cannot Determine If Student Location Already Posted. Would You Like To Possibly Overwrite Their Location?", confirmButtonText: "Overwrite", confirmHandler: self.presentInformationPostingView)
+        if let saved = ParseClient.sharedInstance().currentStudentHasLocationSaved where saved == true {
+            
+            // yes. ask the user if they want to overwrite their previous entry
+            var message : String?
+            if let fname = ParseClient.sharedInstance().firstName,
+                let lname = ParseClient.sharedInstance().lastName {
+                message = "User \"\(fname) \(lname)\" Has Already Posted a Student Location. Would You Like to Overwrite Their Location?"
             } else {
-                if let _ = isPresent where isPresent == true {
-                    var message : String?
-                    if let fname = ParseClient.sharedInstance().firstName,
-                       let lname = ParseClient.sharedInstance().lastName {
-                        message = "User \"\(fname) \(lname)\" Has Already Posted a Student Location. Would You Like to Overwrite Their Location?"
-                    } else {
-                        message = "User Has Already Posted a Student Location. Would You Like to Overwrite Their Location?"
-                    }
-                    ControllerCommon.displayConfirmCancelDialog(self, message: message!, confirmButtonText: "Overwrite", confirmHandler: self.presentInformationPostingView)
-                }
+                message = "User Has Already Posted a Student Location. Would You Like to Overwrite Their Location?"
             }
-        }
+            
+            // answering "Overwrite" will take user to the information posting views
+            //           "Cancel" will leave them on the current screen
+            ControllerCommon.displayConfirmCancelDialog(self, message: message!, confirmButtonText: "Overwrite", confirmHandler: self.presentInformationPostingView)
         
-        // go to the information posting view
-        presentInformationPostingView(nil)
+        } else {
+            
+            // no. simply present the information posting views
+            presentInformationPostingView(nil)
+        }
+    
     }
     
     @IBAction func logoutPressed(sender: AnyObject) {
