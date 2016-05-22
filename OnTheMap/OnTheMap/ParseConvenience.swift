@@ -62,11 +62,15 @@ extension ParseClient {
             
             for location in locations {
                 if location.userId == userID {
+                    // found this student in the local data
+                    currentStudentHasLocationSaved = true
                     completionHandlerForLocation(isPresent: true, error: nil)
                     return
                 }
             }
             
+            // did not find this student in the local data
+            currentStudentHasLocationSaved = false
             completionHandlerForLocation(isPresent: false, error: nil)
 
         } else {
@@ -86,12 +90,14 @@ extension ParseClient {
                     completionHandlerForLocation(isPresent: false, error: ParseClient.Errors.NetworkError)
                 } else {
                     print(result)
-                    // get the students' locations
                     if result["createdAt"] != nil {
-                        // convert it to the format the map needs
+                        // found an entry for this student in the Parse stored data
+                        self.currentStudentHasLocationSaved = true
                         completionHandlerForLocation(isPresent: true, error: nil)
                     } else {
-                        print("Could not find results in \(result)")
+                        // did not find an entry for this student in the Parse stored data
+                        print("Could not find createdAt in \(result)")
+                        self.currentStudentHasLocationSaved = false
                         completionHandlerForLocation(isPresent: false, error: ParseClient.Errors.RequiredContentMissing)
                     }
                 }
