@@ -90,6 +90,8 @@ class ShareLinkViewController: UIViewControllerWithTextViewDefaultText, MKMapVie
                 if let saved = ParseClient.sharedInstance().currentStudentHasLocationSaved where saved == false {
                     
                     // new record
+                    print("adding a new student record")
+                    
                     ParseClient.sharedInstance().addStudentLocation(info) { (success, error) in
                         
                         performUIUpdatesOnMain {
@@ -101,14 +103,17 @@ class ShareLinkViewController: UIViewControllerWithTextViewDefaultText, MKMapVie
                                 } else {
                                     ControllerCommon.displayErrorDialog(self, message: "Could Not Add Location Info")
                                 }
+                                return
                             }
-                            // dismiss this view controller (even if there was an error)
+                            // dismiss this view controller
                             self.dismissViewControllerAnimated(true, completion: nil)
                         }
                     }
                 } else {
                     
                     // update exiting record
+                    print("modifying an existing student record")
+                    
                     ParseClient.sharedInstance().updateStudentLocation(info) { (success, error) in
                         
                         performUIUpdatesOnMain {
@@ -120,8 +125,9 @@ class ShareLinkViewController: UIViewControllerWithTextViewDefaultText, MKMapVie
                                 } else {
                                     ControllerCommon.displayErrorDialog(self, message: "Could Not Update Location Info")
                                 }
+                                return
                             }
-                            // dismiss this view controller (even if there was an error)
+                            // dismiss this view controller
                             self.dismissViewControllerAnimated(true, completion: nil)
                         }
                     }

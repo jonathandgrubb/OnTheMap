@@ -78,25 +78,28 @@ extension ParseClient {
             // reach out via the API to query for this individual
             
             // specify params (if any)
-            let parameters = [String:AnyObject]()
+            let parameters : [String:AnyObject] = [
+                ParameterKeys.Where : "{\"uniqueKey\":\"\(userID)\"}"
+            ]
             
-            let args = userID.dataUsingEncoding(NSUTF8StringEncoding)
-            let method = "\(Methods.StudentLocation)?where=\(args)"
-            
-            taskForGETMethod(method, parameters: parameters) { (result, error) in
+            taskForGETMethod(Methods.StudentLocation, parameters: parameters) { (result, error) in
                 // 3. Send the desired value(s) to completion handler */
                 if let error = error {
                     print(error)
                     completionHandlerForLocation(isPresent: false, error: ParseClient.Errors.NetworkError)
                 } else {
                     print(result)
-                    if result["createdAt"] != nil {
+                    if let results = result["results"] as? [[String:AnyObject]],
+                       let record  = results[0] as [String:AnyObject]?,
+                       let objectId = record["objectId"] as? String {
                         // found an entry for this student in the Parse stored data
                         self.currentStudentHasLocationSaved = true
+                        self.objectId = objectId
+                        print("objectId: \(objectId)")
                         completionHandlerForLocation(isPresent: true, error: nil)
                     } else {
                         // did not find an entry for this student in the Parse stored data
-                        print("Could not find createdAt in \(result)")
+                        print("Could not find objectId in \(result)")
                         self.currentStudentHasLocationSaved = false
                         completionHandlerForLocation(isPresent: false, error: ParseClient.Errors.RequiredContentMissing)
                     }
@@ -157,6 +160,11 @@ extension ParseClient {
         // specify params (if any)
         let parameters = [String:AnyObject]()
         
+        guard let objectId = ParseClient.sharedInstance().objectId else {
+            completionHandlerForUpdate(success: false, error: ParseClient.Errors.InputError)
+            return
+        }
+        
         guard location.userId != nil else {
             // userId is required so we can find this student again
             completionHandlerForUpdate(success: false, error: ParseClient.Errors.InputError)
@@ -172,10 +180,10 @@ extension ParseClient {
         let body = "{\"uniqueKey\": \"\(location.userId!)\", \"firstName\": \"\(location.firstName)\", \"lastName\": \"\(location.lastName)\",\"mapString\": \"\(location.mapString)\", \"mediaURL\": \"\(location.url!)\",\"latitude\": \(location.latitude), \"longitude\": \(location.longitude)}"
         
         // build the method
-        var mutableMethod: String = Methods.StudentLocation
-        mutableMethod = ClientCommon.subtituteKeyInMethod(mutableMethod, key: URLKeys.UserID, value: location.userId!)!
+        var mutableMethod: String = Methods.StudentLocationID
+        mutableMethod = ClientCommon.subtituteKeyInMethod(mutableMethod, key: URLKeys.UserID, value: objectId)!
         
-        taskForPUTMethod(Methods.StudentLocation, parameters: parameters, jsonBody: body) { (result, error) in
+        taskForPUTMethod(mutableMethod, parameters: parameters, jsonBody: body) { (result, error) in
             // 3. Send the desired value(s) to completion handler
             if let error = error {
                 print(error)

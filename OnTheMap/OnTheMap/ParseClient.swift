@@ -21,6 +21,7 @@ class ParseClient : NSObject {
     // things we save until refresh is needed
     var studentLocations: [StudentInformation]?
     var currentStudentHasLocationSaved : Bool? = nil
+    var objectId: String? = nil
     
     // GET
     func taskForGETMethod(method: String, parameters: [String:AnyObject], completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
@@ -133,6 +134,7 @@ class ParseClient : NSObject {
         request.HTTPMethod = "PUT"
         request.addValue(Constants.AppId, forHTTPHeaderField: HeaderKeys.AppId)
         request.addValue(Constants.RestApiKey, forHTTPHeaderField: HeaderKeys.RestApiKey)
+        request.addValue("application/json", forHTTPHeaderField: HeaderKeys.ContentType)
         request.HTTPBody = jsonBody.dataUsingEncoding(NSUTF8StringEncoding)
         
         // 4. Make the request
@@ -141,7 +143,7 @@ class ParseClient : NSObject {
             func sendError(error: String) {
                 print(error)
                 let userInfo = [NSLocalizedDescriptionKey : error]
-                completionHandlerForPUT(result: nil, error: NSError(domain: "taskForPOSTMethod", code: 1, userInfo: userInfo))
+                completionHandlerForPUT(result: nil, error: NSError(domain: "taskForPUTMethod", code: 1, userInfo: userInfo))
             }
             
             // GUARD: Was there an error?
@@ -187,6 +189,7 @@ class ParseClient : NSObject {
             components.queryItems!.append(queryItem)
         }
         
+        print(components.URL!)
         return components.URL!
     }
     

@@ -85,7 +85,15 @@ class MapListTabBarController: UITabBarController {
                     // successful refresh requires no action since it is saved in the model
                     self.childrenDataIsRefreshed()
                     if error != nil {
-                        ControllerCommon.displayErrorDialog(self, message: "Could Not Retrieve Location For Your User From Network")
+                        performUIUpdatesOnMain {
+                            ControllerCommon.displayErrorDialog(self, message: "Could Not Retrieve Location For Your User From Network")
+                        }
+                    } else {
+                        if let isPresent = isPresent {
+                            print("existing entry found: \(isPresent)")
+                        } else {
+                            print("existing entry found: unknown")
+                        }
                     }
                 }
             }

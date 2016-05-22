@@ -36,6 +36,7 @@ extension ParseClient {
         static let NumRecords = "limit"
         static let SkipRecords = "skip"
         static let OrderRecords = "order"
+        static let Where = "where"
     }
     
     struct ParameterValues {
@@ -45,6 +46,7 @@ extension ParseClient {
     struct HeaderKeys {
         static let AppId = "X-Parse-Application-Id"
         static let RestApiKey = "X-Parse-REST-API-Key"
+        static let ContentType = "Content-Type"
     }
     
     struct JSONResponseKeys {
