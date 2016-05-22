@@ -15,15 +15,22 @@ class WhereStudyingViewController: UIViewControllerWithTextViewDefaultText {
     
     @IBOutlet weak var yourLocationTextView: UITextView!
     
+    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        activityIndicator.hidesWhenStopped = true;
+        activityIndicator.center = view.center;
+        self.view.addSubview(activityIndicator)
+
         // set the default text for our UITextView
         defaultLocationText = "Enter Your Location Here"
     }
     
     @IBAction func findOnTheMapButtonPressed(sender: AnyObject) {
         if let text = yourLocationTextView.text where text != defaultLocationText {
+            activityIndicator.startAnimating()
             let geocoder = CLGeocoder()
             geocoder.geocodeAddressString(text) { (placemark, error) in
                 
@@ -41,18 +48,23 @@ class WhereStudyingViewController: UIViewControllerWithTextViewDefaultText {
                         self.studentInfo!.userId = userId
                         
                     } else {
-                        ControllerCommon.displayErrorDialog(self, message: "Error. Cannot Post Location")
-                        return
+                        performUIUpdatesOnMain{
+                            self.activityIndicator.stopAnimating()
+                            ControllerCommon.displayErrorDialog(self, message: "Error. Cannot Post Location")
+                            return
+                        }
                     }
                     
                     // present the ShareLinkViewController
                     performUIUpdatesOnMain {
+                        self.activityIndicator.stopAnimating()
                         self.performSegueWithIdentifier("ShareLinkSegue", sender: nil)
                     }
                     
                 } else {
                     // Couldn't geocode this location
                     performUIUpdatesOnMain {
+                        self.activityIndicator.stopAnimating()
                         ControllerCommon.displayErrorDialog(self, message: "Could Not Geocode This Location")
                         return
                     }

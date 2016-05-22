@@ -16,9 +16,15 @@ class ShareLinkViewController: UIViewControllerWithTextViewDefaultText, MKMapVie
     @IBOutlet weak var shareLink: UITextView!
     @IBOutlet weak var studentMapView: MKMapView!
     
+    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        activityIndicator.hidesWhenStopped = true;
+        activityIndicator.center = view.center;
+        self.view.addSubview(activityIndicator)
+
         // hide the back button
         self.navigationItem.hidesBackButton = true
         
@@ -83,9 +89,13 @@ class ShareLinkViewController: UIViewControllerWithTextViewDefaultText, MKMapVie
                 // add the link to the student info
                 info.url = link
                 
+                activityIndicator.startAnimating()
+                
                 // are we adding new or updating existing?
                 // write the new location data
                 ParseClient.sharedInstance().addStudentLocation(info, completionHandlerForAdd: { (success, error) in
+                    
+                    self.activityIndicator.stopAnimating()
                     
                     if !success {
                         if let error = error where error == ParseClient.Errors.NetworkError {
