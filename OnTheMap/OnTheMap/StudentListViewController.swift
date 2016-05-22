@@ -60,7 +60,9 @@ class StudentListViewController: CustomUIViewController, UITableViewDelegate, UI
     }
     
     func dataWillRefresh() {
-        activityIndicator.startAnimating()
+        performUIUpdatesOnMain {
+            self.activityIndicator.startAnimating()
+        }
     }
     
     // This method is to be called every time we need to redraw because student data was refreshed
