@@ -19,16 +19,17 @@ extension ParseClient {
         case DataConversionError
         case InputError
         case RecordNotAdded
+        case RecordNotUpdated
         case NotImplemented
     }
     
     struct Methods {
         static let StudentLocation = "/StudentLocation"
-        //static let UsersID = "/users/{id}"
+        static let StudentLocationID = "/StudentLocation/{id}"
     }
-    
+
     struct URLKeys {
-        //static let UserID = "id"
+        static let UserID = "id"
     }
     
     struct ParameterKeys {

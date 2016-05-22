@@ -115,6 +115,47 @@ extension ParseClient {
     
     func updateStudentLocation(studentLocation: StudentInformation, completionHandlerForUpdate: (success: Bool, error: ParseClient.Errors?) -> Void) -> Void {
         
+        // get local mutable copy
+        var location = studentLocation
+        
+        // specify params (if any)
+        let parameters = [String:AnyObject]()
+        
+        guard location.userId != nil else {
+            // userId is required so we can find this student again
+            completionHandlerForUpdate(success: false, error: ParseClient.Errors.InputError)
+            return
+        }
+        
+        if location.url == nil {
+            // not required for a lookup, but we need to be able to unwrap it
+            location.url = ""
+        }
+        
+        // build the json body with the username and password
+        let body = "{\"uniqueKey\": \"\(location.userId!)\", \"firstName\": \"\(location.firstName)\", \"lastName\": \"\(location.lastName)\",\"mapString\": \"\(location.mapString)\", \"mediaURL\": \"\(location.url!)\",\"latitude\": \(location.latitude), \"longitude\": \(location.longitude)}"
+        
+        // build the method
+        var mutableMethod: String = Methods.StudentLocation
+        mutableMethod = ClientCommon.subtituteKeyInMethod(mutableMethod, key: URLKeys.UserID, value: location.userId!)!
+        
+        taskForPUTMethod(Methods.StudentLocation, parameters: parameters, jsonBody: body) { (result, error) in
+            // 3. Send the desired value(s) to completion handler
+            if let error = error {
+                print(error)
+                // assume a network problem
+                completionHandlerForUpdate(success: false, error: ParseClient.Errors.NetworkError)
+            } else {
+                print(result)
+                if result["updatedAt"] == nil {
+                    // the record was not added
+                    completionHandlerForUpdate(success: false, error: ParseClient.Errors.RecordNotUpdated)
+                } else {
+                    // the record was added
+                    completionHandlerForUpdate(success: true, error: nil)
+                }
+            }
+        }
     }
     
     func mkPointAnnotation(fromStudentLocations: [StudentInformation]?, completionHandlerForConversion: (success: Bool, mapData: [MKPointAnnotation]?) -> Void) -> Void {
