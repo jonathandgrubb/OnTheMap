@@ -73,15 +73,5 @@ class WhereStudyingViewController: UIViewControllerWithTextViewDefaultText {
     @IBAction func cancelButtonPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    // prepare the segue by giving the latitude and longitude to the next controller
-    //override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    //    if segue.identifier == "ShareLinkSegue" {
-    //        if let shareLinkVC = segue.destinationViewController as? ShareLinkViewController,
-    //           let studentInfo = studentInfo {
-    //            shareLinkVC.studentInfo = studentInfo
-    //        }
-    //    }
-    //}
-    
+
 }

@@ -64,10 +64,10 @@ class LoginViewController: CustomUIViewController {
     
     private func completeLogin(userId: String, firstName: String, lastName: String) {
         // save the stuff we need for the Parse API calls
-        if var studentsInfo = StudentsInformation.sharedInstance().currentStudent {
-            studentsInfo.userId = userId
-            studentsInfo.firstName = firstName
-            studentsInfo.lastName = lastName
+        if StudentsInformation.sharedInstance().currentStudent != nil {
+            StudentsInformation.sharedInstance().currentStudent!.userId = userId
+            StudentsInformation.sharedInstance().currentStudent!.firstName = firstName
+            StudentsInformation.sharedInstance().currentStudent!.lastName = lastName
         } else {
             StudentsInformation.sharedInstance().currentStudent = StudentInformation(firstName: firstName, lastName: lastName, userId: userId)
         }

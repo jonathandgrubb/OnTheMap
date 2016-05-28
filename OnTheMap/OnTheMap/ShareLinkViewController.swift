@@ -77,24 +77,24 @@ class ShareLinkViewController: UIViewControllerWithTextViewDefaultText, MKMapVie
     @IBAction func submitPressed(sender: AnyObject) {
         
         // make sure we have the studentInfo
-        if var info = StudentsInformation.sharedInstance().currentStudent {
+        if StudentsInformation.sharedInstance().currentStudent != nil {
         
             // make sure the Link isn't the default text
             if let link = shareLink.text where link != defaultLocationText {
             
                 // add the link to the student info
-                info.url = link
+                StudentsInformation.sharedInstance().currentStudent!.url = link
                 
                 activityIndicator.startAnimating()
                 
                 // are we adding new or updating existing?
                 // write the new location data
-                if info.objectId == nil {
+                if StudentsInformation.sharedInstance().currentStudent!.objectId == nil {
                     
                     // new record
                     print("adding a new student record")
                     
-                    ParseClient.sharedInstance().addStudentLocation(info) { (success, error) in
+                    ParseClient.sharedInstance().addStudentLocation() { (success, error) in
                         
                         performUIUpdatesOnMain {
                             self.activityIndicator.stopAnimating()
@@ -116,7 +116,7 @@ class ShareLinkViewController: UIViewControllerWithTextViewDefaultText, MKMapVie
                     // update exiting record
                     print("modifying an existing student record")
                     
-                    ParseClient.sharedInstance().updateStudentLocation(info) { (success, error) in
+                    ParseClient.sharedInstance().updateStudentLocation() { (success, error) in
                         
                         performUIUpdatesOnMain {
                             self.activityIndicator.stopAnimating()

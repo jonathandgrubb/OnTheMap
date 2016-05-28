@@ -41,14 +41,6 @@ struct StudentInformation {
         self.userId    = userId
     }
     
-    //init(firstName: String, lastName: String, mapString: String, latitude: Double, longitude: Double) {
-    //    self.firstName = firstName
-    //    self.lastName  = lastName
-    //    self.mapString = mapString
-    //    self.latitude  = latitude
-    //    self.longitude = longitude
-    //}
-    
     static func studentsFromResults(results: [[String:AnyObject]]) -> [StudentInformation] {
         
         var studentInformation = [StudentInformation]()

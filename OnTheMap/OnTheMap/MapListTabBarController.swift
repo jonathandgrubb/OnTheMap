@@ -66,7 +66,7 @@ class MapListTabBarController: UITabBarController {
         childrenDataWillRefresh()
         
         // grab most recent student data
-        ParseClient.sharedInstance().getStudentLocations() { (success, studentLocations, error) in
+        ParseClient.sharedInstance().getStudentLocations() { (success, error) in
             
             if (!success) {
                 performUIUpdatesOnMain {
