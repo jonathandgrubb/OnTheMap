@@ -53,8 +53,11 @@ class StudentListViewController: CustomUIViewController, UITableViewDelegate, UI
         
         if let studentLocations = ParseClient.sharedInstance().studentLocations,
            let studentLocation = studentLocations[indexPath.row] as StudentInformation?,
-           let url = studentLocation.url {
-            app.openURL(NSURL(string: url)!)
+           let url = studentLocation.url,
+           let validUrl = NSURL(string: url){
+            app.openURL(validUrl)
+        } else {
+            ControllerCommon.displayErrorDialog(self, message: "Invalid Link")
         }
 
     }
