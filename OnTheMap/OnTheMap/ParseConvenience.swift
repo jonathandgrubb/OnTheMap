@@ -11,7 +11,7 @@ import MapKit
 
 extension ParseClient {
     
-    func getStudentLocations(numRecords: Int = 100, skip: Int = 0, ascending: Bool = true, completionHandlerForLocations: (success: Bool, studentLocations: [StudentInformation]?, error: ParseClient.Errors?) -> Void) {
+    func getStudentLocations(numRecords: Int = 100, skip: Int = 0, ascending: Bool = false, completionHandlerForLocations: (success: Bool, studentLocations: [StudentInformation]?, error: ParseClient.Errors?) -> Void) {
         
         // specify params (if any)
         var parameters : [String:AnyObject] = [
