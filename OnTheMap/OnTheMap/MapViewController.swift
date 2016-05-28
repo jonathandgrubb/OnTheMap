@@ -42,7 +42,8 @@ class MapViewController: CustomUIViewController, MKMapViewDelegate, Refreshable 
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.sharedApplication()
             if let url = view.annotation?.subtitle!,
-               let validUrl = NSURL(string: url) {
+               let validUrl = NSURL(string: url)
+               where app.canOpenURL(validUrl) == true {
                 app.openURL(validUrl)
             } else {
                 ControllerCommon.displayErrorDialog(self, message: "Invalid Link")
