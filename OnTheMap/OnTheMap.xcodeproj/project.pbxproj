@@ -169,6 +169,7 @@
 		AB7E23F41CBC93F40067637B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AB84BFEB1CE7929B00B3558D /* StudentInformation.swift */,
 				AB7E23F51CBC94010067637B /* Clients */,
 			);
 			name = Model;
@@ -200,7 +201,6 @@
 				AB7D32FA1CD82EDC00C575D5 /* ParseClient.swift */,
 				AB7D32FC1CD82EF200C575D5 /* ParseConvenience.swift */,
 				AB8171AF1CDFBA2500201A0C /* ParseConstants.swift */,
-				AB84BFEB1CE7929B00B3558D /* StudentInformation.swift */,
 			);
 			name = Parse;
 			sourceTree = "<group>";
