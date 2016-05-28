@@ -28,6 +28,9 @@
 		ABA2E3BE1CE2C37300378A8E /* ControllerCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA2E3BD1CE2C37300378A8E /* ControllerCommon.swift */; };
 		ABA870011CD2EAC8002690BE /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA870001CD2EAC8002690BE /* MapViewController.swift */; };
 		ABA870031CD2EAEB002690BE /* StudentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA870021CD2EAEB002690BE /* StudentListViewController.swift */; };
+		ABC10A101CF93398000EE3E0 /* UIViewControllerWithTextViewDefaultText.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC10A0F1CF93398000EE3E0 /* UIViewControllerWithTextViewDefaultText.swift */; };
+		ABC10A121CF933BD000EE3E0 /* Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC10A111CF933BD000EE3E0 /* Refreshable.swift */; };
+		ABC10A141CF933DB000EE3E0 /* CustomUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC10A131CF933DB000EE3E0 /* CustomUIViewController.swift */; };
 		ABDF63531CBF14640006F572 /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF63521CBF14640006F572 /* UdacityConvenience.swift */; };
 		ABDF63551CBF38AF0006F572 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF63541CBF38AF0006F572 /* GCDBlackBox.swift */; };
 /* End PBXBuildFile section */
@@ -77,6 +80,9 @@
 		ABA2E3BD1CE2C37300378A8E /* ControllerCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerCommon.swift; sourceTree = "<group>"; };
 		ABA870001CD2EAC8002690BE /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		ABA870021CD2EAEB002690BE /* StudentListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentListViewController.swift; sourceTree = "<group>"; };
+		ABC10A0F1CF93398000EE3E0 /* UIViewControllerWithTextViewDefaultText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerWithTextViewDefaultText.swift; sourceTree = "<group>"; };
+		ABC10A111CF933BD000EE3E0 /* Refreshable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Refreshable.swift; sourceTree = "<group>"; };
+		ABC10A131CF933DB000EE3E0 /* CustomUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIViewController.swift; sourceTree = "<group>"; };
 		ABDF63521CBF14640006F572 /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
 		ABDF63541CBF38AF0006F572 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -203,6 +209,9 @@
 			isa = PBXGroup;
 			children = (
 				ABA2E3BD1CE2C37300378A8E /* ControllerCommon.swift */,
+				ABC10A111CF933BD000EE3E0 /* Refreshable.swift */,
+				ABC10A0F1CF93398000EE3E0 /* UIViewControllerWithTextViewDefaultText.swift */,
+				ABC10A131CF933DB000EE3E0 /* CustomUIViewController.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -357,6 +366,8 @@
 			files = (
 				AB84BFEC1CE7929B00B3558D /* StudentInformation.swift in Sources */,
 				AB7D32FD1CD82EF200C575D5 /* ParseConvenience.swift in Sources */,
+				ABC10A141CF933DB000EE3E0 /* CustomUIViewController.swift in Sources */,
+				ABC10A101CF93398000EE3E0 /* UIViewControllerWithTextViewDefaultText.swift in Sources */,
 				ABA2E3BE1CE2C37300378A8E /* ControllerCommon.swift in Sources */,
 				AB7E23F91CBC969B0067637B /* UdacityClient.swift in Sources */,
 				AB7E23CC1CBC90400067637B /* OnTheMap.xcdatamodeld in Sources */,
@@ -369,6 +380,7 @@
 				AB8171B01CDFBA2500201A0C /* ParseConstants.swift in Sources */,
 				AB7D32FB1CD82EDC00C575D5 /* ParseClient.swift in Sources */,
 				ABDF63551CBF38AF0006F572 /* GCDBlackBox.swift in Sources */,
+				ABC10A121CF933BD000EE3E0 /* Refreshable.swift in Sources */,
 				AB7E23C41CBC90400067637B /* AppDelegate.swift in Sources */,
 				ABA870011CD2EAC8002690BE /* MapViewController.swift in Sources */,
 				AB98C98B1CE8D23500F61F07 /* ShareLinkViewController.swift in Sources */,
