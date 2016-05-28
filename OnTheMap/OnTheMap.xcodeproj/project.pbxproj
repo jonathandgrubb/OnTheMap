@@ -31,6 +31,7 @@
 		ABC10A101CF93398000EE3E0 /* UIViewControllerWithTextViewDefaultText.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC10A0F1CF93398000EE3E0 /* UIViewControllerWithTextViewDefaultText.swift */; };
 		ABC10A121CF933BD000EE3E0 /* Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC10A111CF933BD000EE3E0 /* Refreshable.swift */; };
 		ABC10A141CF933DB000EE3E0 /* CustomUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC10A131CF933DB000EE3E0 /* CustomUIViewController.swift */; };
+		ABC10A161CF9367D000EE3E0 /* StudentsInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC10A151CF9367D000EE3E0 /* StudentsInformation.swift */; };
 		ABDF63531CBF14640006F572 /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF63521CBF14640006F572 /* UdacityConvenience.swift */; };
 		ABDF63551CBF38AF0006F572 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF63541CBF38AF0006F572 /* GCDBlackBox.swift */; };
 /* End PBXBuildFile section */
@@ -83,6 +84,7 @@
 		ABC10A0F1CF93398000EE3E0 /* UIViewControllerWithTextViewDefaultText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerWithTextViewDefaultText.swift; sourceTree = "<group>"; };
 		ABC10A111CF933BD000EE3E0 /* Refreshable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Refreshable.swift; sourceTree = "<group>"; };
 		ABC10A131CF933DB000EE3E0 /* CustomUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIViewController.swift; sourceTree = "<group>"; };
+		ABC10A151CF9367D000EE3E0 /* StudentsInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentsInformation.swift; sourceTree = "<group>"; };
 		ABDF63521CBF14640006F572 /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
 		ABDF63541CBF38AF0006F572 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				AB84BFEB1CE7929B00B3558D /* StudentInformation.swift */,
+				ABC10A151CF9367D000EE3E0 /* StudentsInformation.swift */,
 				AB7E23F51CBC94010067637B /* Clients */,
 			);
 			name = Model;
@@ -384,6 +387,7 @@
 				AB7E23C41CBC90400067637B /* AppDelegate.swift in Sources */,
 				ABA870011CD2EAC8002690BE /* MapViewController.swift in Sources */,
 				AB98C98B1CE8D23500F61F07 /* ShareLinkViewController.swift in Sources */,
+				ABC10A161CF9367D000EE3E0 /* StudentsInformation.swift in Sources */,
 				AB98C9891CE8D13C00F61F07 /* WhereStudyingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

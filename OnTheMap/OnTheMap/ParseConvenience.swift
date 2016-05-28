@@ -31,8 +31,8 @@ extension ParseClient {
                 // get the students' locations
                 if let results = result["results"] as? [[String:AnyObject]] {
                     // convert it to the format the map needs
-                    self.studentLocations = StudentInformation.studentsFromResults(results)
-                    completionHandlerForLocations(success: true, studentLocations: self.studentLocations, error: nil)
+                    StudentsInformation.sharedInstance().studentLocations = StudentInformation.studentsFromResults(results)
+                    completionHandlerForLocations(success: true, studentLocations: StudentsInformation.sharedInstance().studentLocations, error: nil)
                 } else {
                     print("Could not find results in \(result)")
                     completionHandlerForLocations(success: false, studentLocations: nil, error: ParseClient.Errors.RequiredContentMissing)
@@ -44,8 +44,8 @@ extension ParseClient {
     
     func studentLocationPresent(useLocalData: Bool = true, completionHandlerForLocation: (isPresent: Bool?, error: ParseClient.Errors?) -> Void) {
         
-        guard let userID = self.userId else {
-            // we haven't yet saved the userId from login
+        guard let currentStudent = StudentsInformation.sharedInstance().currentStudent else {
+            // we haven't yet saved the user from login
             completionHandlerForLocation(isPresent: nil, error: ParseClient.Errors.RequiredContentMissing)
             return
         }
@@ -54,23 +54,23 @@ extension ParseClient {
 
             // use the local 100 results we already have stored
             
-            guard let locations = self.studentLocations else {
+            guard let locations = StudentsInformation.sharedInstance().studentLocations else {
                 // not yet populated with student locations info
                 completionHandlerForLocation(isPresent: nil, error: ParseClient.Errors.RequiredContentMissing)
                 return
             }
             
             for location in locations {
-                if location.userId == userID {
+                if location.userId == currentStudent.userId {
                     // found this student in the local data
-                    currentStudentHasLocationSaved = true
+                    //currentStudentHasLocationSaved = true
                     completionHandlerForLocation(isPresent: true, error: nil)
                     return
                 }
             }
             
             // did not find this student in the local data
-            currentStudentHasLocationSaved = false
+            //currentStudentHasLocationSaved = false
             completionHandlerForLocation(isPresent: false, error: nil)
 
         } else {
@@ -79,7 +79,7 @@ extension ParseClient {
             
             // specify params (if any)
             let parameters : [String:AnyObject] = [
-                ParameterKeys.Where : "{\"uniqueKey\":\"\(userID)\"}"
+                ParameterKeys.Where : "{\"uniqueKey\":\"\(currentStudent.userId)\"}"
             ]
             
             taskForGETMethod(Methods.StudentLocation, parameters: parameters) { (result, error) in
@@ -91,16 +91,17 @@ extension ParseClient {
                     print(result)
                     if let results = result["results"] as? [[String:AnyObject]],
                        let record  = results[0] as [String:AnyObject]?,
-                       let objectId = record["objectId"] as? String {
+                       let objectId = record["objectId"] as? String
+                       where StudentsInformation.sharedInstance().currentStudent != nil {
                         // found an entry for this student in the Parse stored data
-                        self.currentStudentHasLocationSaved = true
-                        self.objectId = objectId
+                        //self.currentStudentHasLocationSaved = true
+                        StudentsInformation.sharedInstance().currentStudent!.objectId = objectId
                         print("objectId: \(objectId)")
                         completionHandlerForLocation(isPresent: true, error: nil)
                     } else {
                         // did not find an entry for this student in the Parse stored data
                         print("Could not find objectId in \(result)")
-                        self.currentStudentHasLocationSaved = false
+                        //self.currentStudentHasLocationSaved = false
                         completionHandlerForLocation(isPresent: false, error: ParseClient.Errors.RequiredContentMissing)
                     }
                 }
@@ -114,24 +115,32 @@ extension ParseClient {
     func addStudentLocation(studentLocation: StudentInformation, completionHandlerForAdd: (success: Bool, error: ParseClient.Errors?) -> Void) -> Void {
         
         // get local mutable copy
-        var location = studentLocation
+        //var location = studentLocation
         
         // specify params (if any)
         let parameters = [String:AnyObject]()
         
-        guard location.userId != nil else {
-            // userId is required so we can find this student again
-            completionHandlerForAdd(success: false, error: ParseClient.Errors.InputError)
-            return
+        //guard location.userId != nil else {
+        //    // userId is required so we can find this student again
+        //    completionHandlerForAdd(success: false, error: ParseClient.Errors.InputError)
+        //    return
+        //}
+        
+        guard var currentStudent = StudentsInformation.sharedInstance().currentStudent,
+            let mapString = currentStudent.mapString,
+            let latitude = currentStudent.latitude,
+            let longitude = currentStudent.longitude else {
+                completionHandlerForAdd(success: false, error: ParseClient.Errors.InputError)
+                return
         }
         
-        if location.url == nil {
+        if currentStudent.url == nil {
             // not required for a lookup, but we need to be able to unwrap it
-            location.url = ""
+            currentStudent.url = ""
         }
         
         // build the json body with the username and password
-        let body = "{\"uniqueKey\": \"\(location.userId!)\", \"firstName\": \"\(location.firstName)\", \"lastName\": \"\(location.lastName)\",\"mapString\": \"\(location.mapString)\", \"mediaURL\": \"\(location.url!)\",\"latitude\": \(location.latitude), \"longitude\": \(location.longitude)}"
+        let body = "{\"uniqueKey\": \"\(currentStudent.userId)\", \"firstName\": \"\(currentStudent.firstName)\", \"lastName\": \"\(currentStudent.lastName)\",\"mapString\": \"\(mapString)\", \"mediaURL\": \"\(currentStudent.url!)\",\"latitude\": \(latitude), \"longitude\": \(longitude)}"
         
         taskForPOSTMethod(Methods.StudentLocation, parameters: parameters, jsonBody: body) { (result, error) in
             // 3. Send the desired value(s) to completion handler
@@ -155,29 +164,33 @@ extension ParseClient {
     func updateStudentLocation(studentLocation: StudentInformation, completionHandlerForUpdate: (success: Bool, error: ParseClient.Errors?) -> Void) -> Void {
         
         // get local mutable copy
-        var location = studentLocation
+        //var location = studentLocation
         
         // specify params (if any)
         let parameters = [String:AnyObject]()
         
-        guard let objectId = ParseClient.sharedInstance().objectId else {
+        guard var currentStudent = StudentsInformation.sharedInstance().currentStudent,
+              let objectId = currentStudent.objectId,
+              let mapString = currentStudent.mapString,
+              let latitude = currentStudent.latitude,
+              let longitude = currentStudent.longitude else {
             completionHandlerForUpdate(success: false, error: ParseClient.Errors.InputError)
             return
         }
         
-        guard location.userId != nil else {
-            // userId is required so we can find this student again
-            completionHandlerForUpdate(success: false, error: ParseClient.Errors.InputError)
-            return
-        }
+        //guard location.userId != nil else {
+        //    // userId is required so we can find this student again
+        //    completionHandlerForUpdate(success: false, error: ParseClient.Errors.InputError)
+        //    return
+        //}
         
-        if location.url == nil {
+        if currentStudent.url == nil {
             // not required for a lookup, but we need to be able to unwrap it
-            location.url = ""
+            currentStudent.url = ""
         }
         
         // build the json body with the username and password
-        let body = "{\"uniqueKey\": \"\(location.userId!)\", \"firstName\": \"\(location.firstName)\", \"lastName\": \"\(location.lastName)\",\"mapString\": \"\(location.mapString)\", \"mediaURL\": \"\(location.url!)\",\"latitude\": \(location.latitude), \"longitude\": \(location.longitude)}"
+        let body = "{\"uniqueKey\": \"\(currentStudent.userId)\", \"firstName\": \"\(currentStudent.firstName)\", \"lastName\": \"\(currentStudent.lastName)\",\"mapString\": \"\(mapString)\", \"mediaURL\": \"\(currentStudent.url!)\",\"latitude\": \(latitude), \"longitude\": \(longitude)}"
         
         // build the method
         var mutableMethod: String = Methods.StudentLocationID
@@ -219,25 +232,30 @@ extension ParseClient {
         
         for dictionary in studentLocations {
         
-            // Notice that the float values are being used to create CLLocationDegree values.
-            // This is a version of the Double type.
-            let lat = CLLocationDegrees(dictionary.latitude)
-            let long = CLLocationDegrees(dictionary.longitude)
+            if let latitude = dictionary.latitude,
+               let longitude = dictionary.longitude {
+                
+                // Notice that the float values are being used to create CLLocationDegree values.
+                // This is a version of the Double type.
+                let lat = CLLocationDegrees(latitude)
+                let long = CLLocationDegrees(longitude)
+                
+                // The lat and long are used to create a CLLocationCoordinates2D instance.
+                let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                
+                // Here we create the annotation and set its coordiate, title, and subtitle properties
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = coordinate
+                annotation.title = "\(dictionary.firstName) \(dictionary.lastName)"
+                
+                if let url = dictionary.url {
+                    annotation.subtitle = url
+                }
+                
+                // Finally we place the annotation in an array of annotations.
+                annotations.append(annotation)
             
-            // The lat and long are used to create a CLLocationCoordinates2D instance.
-            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-            
-            // Here we create the annotation and set its coordiate, title, and subtitle properties
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = coordinate
-            annotation.title = "\(dictionary.firstName) \(dictionary.lastName)"
-            
-            if let url = dictionary.url {
-                annotation.subtitle = url
             }
-            
-            // Finally we place the annotation in an array of annotations.
-            annotations.append(annotation)
         }
         
         completionHandlerForConversion(success: true, mapData: annotations)

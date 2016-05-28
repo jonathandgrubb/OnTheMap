@@ -58,7 +58,7 @@ class MapViewController: CustomUIViewController, MKMapViewDelegate, Refreshable 
     
     // This method is to be called every time we need to redraw because student data was refreshed
     func dataIsRefreshed() {
-        if let studentLocations = ParseClient.sharedInstance().studentLocations {
+        if let studentLocations = StudentsInformation.sharedInstance().studentLocations {
             // convert it to the format the map needs
             ParseClient.sharedInstance().mkPointAnnotation(studentLocations) { (success, mapData) in
                 performUIUpdatesOnMain {

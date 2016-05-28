@@ -11,7 +11,7 @@ import CoreLocation
 
 class WhereStudyingViewController: UIViewControllerWithTextViewDefaultText {
 
-    var studentInfo : StudentInformation?
+    //var studentInfo : StudentInformation?
     
     @IBOutlet weak var yourLocationTextView: UITextView!
     
@@ -33,13 +33,12 @@ class WhereStudyingViewController: UIViewControllerWithTextViewDefaultText {
                    where placemark.count > 0 && error == nil {
                     
                     // do we still have the student info?
-                    if let firstName = ParseClient.sharedInstance().firstName,
-                       let lastName = ParseClient.sharedInstance().lastName,
-                       let userId = ParseClient.sharedInstance().userId {
+                    if StudentsInformation.sharedInstance().currentStudent != nil {
                         
                         // yes. prepare the info for sending to the next step
-                        self.studentInfo = StudentInformation(firstName: firstName, lastName: lastName, mapString: text, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                        self.studentInfo!.userId = userId
+                        StudentsInformation.sharedInstance().currentStudent!.mapString = text
+                        StudentsInformation.sharedInstance().currentStudent!.latitude = location.coordinate.latitude
+                        StudentsInformation.sharedInstance().currentStudent!.longitude = location.coordinate.longitude
                         
                     } else {
                         performUIUpdatesOnMain{
@@ -76,13 +75,13 @@ class WhereStudyingViewController: UIViewControllerWithTextViewDefaultText {
     }
     
     // prepare the segue by giving the latitude and longitude to the next controller
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "ShareLinkSegue" {
-            if let shareLinkVC = segue.destinationViewController as? ShareLinkViewController,
-               let studentInfo = studentInfo {
-                shareLinkVC.studentInfo = studentInfo
-            }
-        }
-    }
+    //override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    //    if segue.identifier == "ShareLinkSegue" {
+    //        if let shareLinkVC = segue.destinationViewController as? ShareLinkViewController,
+    //           let studentInfo = studentInfo {
+    //            shareLinkVC.studentInfo = studentInfo
+    //        }
+    //    }
+    //}
     
 }

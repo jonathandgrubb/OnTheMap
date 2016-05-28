@@ -14,14 +14,14 @@ class ParseClient : NSObject {
     var session = NSURLSession.sharedSession()
 
     // things we saved at login
-    var userId : String? = nil
-    var firstName : String? = nil
-    var lastName : String? = nil
+    //var userId : String? = nil
+    //var firstName : String? = nil
+    //var lastName : String? = nil
     
     // things we save until refresh is needed
-    var studentLocations: [StudentInformation]?
-    var currentStudentHasLocationSaved : Bool? = nil
-    var objectId: String? = nil
+    //var studentLocations: [StudentInformation]?
+    //var currentStudentHasLocationSaved : Bool? = nil
+    //var objectId: String? = nil
     
     // GET
     func taskForGETMethod(method: String, parameters: [String:AnyObject], completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {

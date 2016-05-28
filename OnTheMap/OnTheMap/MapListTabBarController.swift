@@ -22,20 +22,15 @@ class MapListTabBarController: UITabBarController {
         print("pin")
         
         // has this user pinned a location before?
-        if let saved = ParseClient.sharedInstance().currentStudentHasLocationSaved where saved == true {
+        if let currentStudent = StudentsInformation.sharedInstance().currentStudent
+           where currentStudent.objectId != nil {
             
             // yes. ask the user if they want to overwrite their previous entry
-            var message : String?
-            if let fname = ParseClient.sharedInstance().firstName,
-                let lname = ParseClient.sharedInstance().lastName {
-                message = "User \"\(fname) \(lname)\" Has Already Posted a Student Location. Would You Like to Overwrite Their Location?"
-            } else {
-                message = "User Has Already Posted a Student Location. Would You Like to Overwrite Their Location?"
-            }
+            let message = "User \"\(currentStudent.firstName) \(currentStudent.lastName)\" Has Already Posted a Student Location. Would You Like to Overwrite Their Location?"
             
             // answering "Overwrite" will take user to the information posting views
             //           "Cancel" will leave them on the current screen
-            ControllerCommon.displayConfirmCancelDialog(self, message: message!, confirmButtonText: "Overwrite", confirmHandler: self.presentInformationPostingView)
+            ControllerCommon.displayConfirmCancelDialog(self, message: message, confirmButtonText: "Overwrite", confirmHandler: self.presentInformationPostingView)
         
         } else {
             

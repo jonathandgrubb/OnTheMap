@@ -11,7 +11,7 @@ import MapKit
 
 class ShareLinkViewController: UIViewControllerWithTextViewDefaultText, MKMapViewDelegate {
     
-    var studentInfo : StudentInformation?
+    //var studentInfo : StudentInformation?
     
     @IBOutlet weak var shareLink: UITextView!
     @IBOutlet weak var studentMapView: MKMapView!
@@ -33,7 +33,7 @@ class ShareLinkViewController: UIViewControllerWithTextViewDefaultText, MKMapVie
         studentMapView.addGestureRecognizer(singleTap)
 
         // make sure we have the studentInfo
-        if let info = studentInfo {
+        if let info = StudentsInformation.sharedInstance().currentStudent {
             
             // convert it to the format the map needs
             ParseClient.sharedInstance().mkPointAnnotation([info]) { (success, mapData) in
@@ -50,14 +50,16 @@ class ShareLinkViewController: UIViewControllerWithTextViewDefaultText, MKMapVie
                         // remove the old annotation
                         self.studentMapView.removeAnnotations(oldAnnotations)
                         
-                        print("latitude: \(self.studentInfo!.latitude)")
-                        print("longitude: \(self.studentInfo!.longitude)")
+                        print("latitude: \(info.latitude)")
+                        print("longitude: \(info.longitude)")
                         
                         // zoom in on the pin
-                        let center = CLLocationCoordinate2D(latitude: self.studentInfo!.latitude, longitude: self.studentInfo!.longitude)
-                        let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-                        let region = MKCoordinateRegion(center: center, span: span)
-                        self.studentMapView.setRegion(region, animated: true)
+                        if let latitude = info.latitude, let longitude = info.longitude {
+                            let center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                            let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+                            let region = MKCoordinateRegion(center: center, span: span)
+                            self.studentMapView.setRegion(region, animated: true)
+                        }
                     }
                 }
             }
@@ -75,7 +77,7 @@ class ShareLinkViewController: UIViewControllerWithTextViewDefaultText, MKMapVie
     @IBAction func submitPressed(sender: AnyObject) {
         
         // make sure we have the studentInfo
-        if var info = studentInfo {
+        if var info = StudentsInformation.sharedInstance().currentStudent {
         
             // make sure the Link isn't the default text
             if let link = shareLink.text where link != defaultLocationText {
@@ -87,7 +89,7 @@ class ShareLinkViewController: UIViewControllerWithTextViewDefaultText, MKMapVie
                 
                 // are we adding new or updating existing?
                 // write the new location data
-                if let saved = ParseClient.sharedInstance().currentStudentHasLocationSaved where saved == false {
+                if info.objectId == nil {
                     
                     // new record
                     print("adding a new student record")

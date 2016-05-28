@@ -21,7 +21,7 @@ class StudentListViewController: CustomUIViewController, UITableViewDelegate, UI
             cell = UITableViewCell(style:UITableViewCellStyle.Subtitle, reuseIdentifier:CellReuseId)
         }
         
-        if let studentLocations = ParseClient.sharedInstance().studentLocations,
+        if let studentLocations = StudentsInformation.sharedInstance().studentLocations,
            let studentLocation = studentLocations[indexPath.row] as StudentInformation? {
             
             // populate cell with student location information
@@ -40,7 +40,7 @@ class StudentListViewController: CustomUIViewController, UITableViewDelegate, UI
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let studentLocations = ParseClient.sharedInstance().studentLocations {
+        if let studentLocations = StudentsInformation.sharedInstance().studentLocations {
             return studentLocations.count
         } else {
             return 0
@@ -51,7 +51,7 @@ class StudentListViewController: CustomUIViewController, UITableViewDelegate, UI
 
         let app = UIApplication.sharedApplication()
         
-        if let studentLocations = ParseClient.sharedInstance().studentLocations,
+        if let studentLocations = StudentsInformation.sharedInstance().studentLocations,
            let studentLocation = studentLocations[indexPath.row] as StudentInformation?,
            let url = studentLocation.url,
            let validUrl = NSURL(string: url)

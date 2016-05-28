@@ -14,11 +14,12 @@ struct StudentInformation {
     
     var firstName: String
     var lastName: String
+    var userId: String
     var url: String?
-    var userId: String?
-    var mapString: String
-    var latitude: Double
-    var longitude: Double
+    var mapString: String?
+    var latitude: Double?
+    var longitude: Double?
+    var objectId: String?
     
     // MARK: Initializers
     
@@ -26,20 +27,27 @@ struct StudentInformation {
     init(dictionary: [String:AnyObject]) {
         firstName = dictionary[ParseClient.JSONResponseKeys.FirstName] as! String
         lastName  = dictionary[ParseClient.JSONResponseKeys.LastName]  as! String
+        userId    = dictionary[ParseClient.JSONResponseKeys.UniqueKey] as! String
         url       = dictionary[ParseClient.JSONResponseKeys.MediaUrl]  as? String
-        userId    = dictionary[ParseClient.JSONResponseKeys.UniqueKey] as? String
-        mapString = dictionary[ParseClient.JSONResponseKeys.MapString] as! String
-        latitude  = dictionary[ParseClient.JSONResponseKeys.Latitude]  as! Double
-        longitude = dictionary[ParseClient.JSONResponseKeys.Longitude] as! Double
+        mapString = dictionary[ParseClient.JSONResponseKeys.MapString] as? String
+        latitude  = dictionary[ParseClient.JSONResponseKeys.Latitude]  as? Double
+        longitude = dictionary[ParseClient.JSONResponseKeys.Longitude] as? Double
+        objectId  = dictionary[ParseClient.JSONResponseKeys.ObjectId]  as? String
     }
     
-    init(firstName: String, lastName: String, mapString: String, latitude: Double, longitude: Double) {
+    init(firstName: String, lastName: String, userId: String) {
         self.firstName = firstName
         self.lastName  = lastName
-        self.mapString = mapString
-        self.latitude  = latitude
-        self.longitude = longitude
+        self.userId    = userId
     }
+    
+    //init(firstName: String, lastName: String, mapString: String, latitude: Double, longitude: Double) {
+    //    self.firstName = firstName
+    //    self.lastName  = lastName
+    //    self.mapString = mapString
+    //    self.latitude  = latitude
+    //    self.longitude = longitude
+    //}
     
     static func studentsFromResults(results: [[String:AnyObject]]) -> [StudentInformation] {
         
