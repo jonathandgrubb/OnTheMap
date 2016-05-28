@@ -76,6 +76,8 @@ class MapViewController: CustomUIViewController, MKMapViewDelegate, Refreshable 
                     }
                 }
             }
+        } else {
+            self.activityIndicator.stopAnimating()
         }
     }
 
