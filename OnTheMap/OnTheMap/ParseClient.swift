@@ -170,8 +170,8 @@ class ParseClient : NSObject {
         
         let components = NSURLComponents()
         components.scheme = "https"
-        components.host = "api.parse.com"
-        components.path = "/1/classes" + (withPathExtension ?? "")
+        components.host = "parse.udacity.com"
+        components.path = "/parse/classes" + (withPathExtension ?? "")
         components.queryItems = [NSURLQueryItem]()
         
         for (key, value) in parameters {
